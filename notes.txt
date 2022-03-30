@@ -2,25 +2,52 @@ Ideas:
 
     Landing page
 
-    Login + signup
-        email, password
+    Login + signup 
+        signup: name and email
+        
+        login: email
+        {
+            email
+        }
 
     Shop page
+        nav bar
         categories
         searchable by body_location
+        
+    Product page
+        Price
+        Sold out or not
+        add to cart
+    (refer back to react ecosystem)
+        
     
     Cart
+        adding/removing from cart should be stored in a state (maybe use local storage)
         confirmation
         Customer info (name, email, credit card, address)
     Checkout
+    
+    
+    Front end needs to give backend purchase data
+    Structure of purchase data
+    Order {
+        Name,
+        email
+        creditcard
+        address
+        Postal code
+        itemId
+        numBought       
+    }
 
 DATA provided:
     Product:
     {
         name,
         price,
-        body_location,
-        category,
+        body_location: wrist, hands, waist, chest, arms, head
+        category: Fitness, entertainment, lifestyle, medical
         _id,
         imageSrc,
         numInStock,
@@ -34,8 +61,38 @@ DATA provided:
         country:
         _id:
     }
+    
+    customer account:
+    {
+        name:
+        email:
+        _id
+    }
 
 Layout:
     Header: sticky?
     Footer: contact info/ other basics
+
     
+Backend stuff:
+    Endpoints in index.js in server folder
+    Need to create a database for purchases
+    Customer database
+    Backend gets order request, responds with the same data but with ID appended
+    
+    create object when spinning up server that holds the data, and then work with that object
+    migrate DB onto mongo AFTER everything works
+    
+    endpoints:
+        get all products
+        get product,(by id)
+        get all companies
+        get manufacturer/company (by id)
+        
+        post add a new order
+        get existing order (by id)
+        
+        post new account (this would be called for signing up) create customer object in db and respond with success
+        post existing account (would be called for logging in) respond with confirmation that account exists?
+    
+Dev extensions in vscode
