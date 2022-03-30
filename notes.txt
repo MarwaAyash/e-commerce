@@ -1,0 +1,41 @@
+Ideas:
+
+    Landing page
+
+    Login + signup
+        email, password
+
+    Shop page
+        categories
+        searchable by body_location
+    
+    Cart
+        confirmation
+        Customer info (name, email, credit card, address)
+    Checkout
+
+DATA provided:
+    Product:
+    {
+        name,
+        price,
+        body_location,
+        category,
+        _id,
+        imageSrc,
+        numInStock,
+        companyId
+    }
+    
+    company/manufacturer
+    {
+        name:
+        url:
+        country:
+        _id:
+    }
+
+Layout:
+    Header: sticky?
+    Footer: contact info/ other basics
+    
