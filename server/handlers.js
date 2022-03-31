@@ -14,6 +14,7 @@ const getItem = (req, res) => {
   const { _id } = req.body;
   let item;
   for (let i = 0; i < res.locals.items.length; i++) {
+    console.log(res.locals.items[i]);
     if (res.locals.items[i]._id === _id) {
       item = res.locals.items[i];
       break;
@@ -32,9 +33,9 @@ const getCompanies = (req, res) => {
 const getCompany = (req, res) => {
   const { _id } = req.body;
   let company;
-  for (let i = 0; i < res.locals.items.length; i++) {
-    if (res.locals.items[i]._id === _id) {
-      company = res.locals.items[i];
+  for (let i = 0; i < res.locals.companies.length; i++) {
+    if (res.locals.companies[i]._id === _id) {
+      company = res.locals.companies[i];
       break;
     }
   }
