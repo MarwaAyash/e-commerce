@@ -56,9 +56,9 @@ express()
 
   // REST endpoints?
   .get("/bacon", (req, res) => res.status(200).json("🥓"))
-  .get("/api/get-item", passItemsTo, getItems)
-  .post("/api/get-item", passItemsTo, getItem)
+  .get("/api/get-items", passItemsTo, getItems)
+  .get("/api/get-item/:_id", passItemsTo, getItem)
   .get("/api/get-companies", passCompaniesTo, getCompanies)
-  .post("/api/get-companies", passCompaniesTo, getCompany)
+  .get("/api/get-company/:_id", passCompaniesTo, getCompany)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
