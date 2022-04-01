@@ -5,7 +5,7 @@ import moment from "moment";
 export const AllContext = createContext();
 
 let initialState = {
-   
+
     firstName: "",
     lastName: "",
     email: "",

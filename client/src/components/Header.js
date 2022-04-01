@@ -11,7 +11,7 @@ const Header = () => {
 
 const location = useLocation();
 return (
-    <div
+    <Wrapper
     style={{
         background: location.pathname !== "/" && "#F061A8",
         paddingBottom: "16px",
@@ -44,9 +44,7 @@ return (
         location.pathname.includes("/products") ? (
             <NavMenu>
                 {/* //dropdowns below?// */}
-                <StyledNavLink exact to="/">
-                    Categories
-                </StyledNavLink>
+                
 
                 <StyledNavLink exact to="/">
                     Brands
@@ -78,7 +76,7 @@ return (
         ) : (
             <></>
             )}
-            </div>
+            </Wrapper>
 );
         };
 
@@ -96,9 +94,17 @@ display: none;
     color: #ffffff;
 }
 `    
+
+const Wrapper = styled.div`
+background-color: #4E545C;
+color: #fff;
+`
+
 const LogoRow = styled.div`
 display: flex;
 justify-content: center;
+/* background-color: #4E545C;
+color: #fff; */
 `
 
 const Title = styled.h1`
@@ -112,6 +118,7 @@ display: flex;
 justify-content: space-around;
 color: #ffffff;
 text-transform: uppercase;
+/* background-color: #4E545C; */
 
 @media screen and (max-width: 820px) {
     display: none !important;
@@ -134,11 +141,6 @@ color: #ffffff;
 }
 `
 
-// const ItemInCart = styled(FaStar)`
-// visibility: ${({ selectedItems }) => selectedItems[0] ? "visible" : "hidden"};
-// transform: translate(-4px, -20px);
-// fill: ${theme.accentColor};
-// `
 
 const StyledCartIcon = styled(FaShoppingCart)`
 fill: white;
