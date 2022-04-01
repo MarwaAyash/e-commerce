@@ -1,7 +1,19 @@
 "use strict";
-
+//const {MONGO_URI} =process.env
+const options = {
+  use,
+};
+const { MongoClient } = require("mongodb");
 const { v4: uuidv4 } = require("uuid");
+<<<<<<< Updated upstream
 const { sendResponse, getItemById } = require("./utils");
+=======
+//const client = new MongoClient(MONGO_URI, options);
+
+const sendResponse = (res, status, data, message = "") => {
+  return res.status(status).json({ status, data, message });
+};
+>>>>>>> Stashed changes
 
 const getItems = (req, res) => {
   sendResponse(res, 200, res.locals.items, "all items");
@@ -36,6 +48,7 @@ const getCompany = (req, res) => {
   sendResponse(res, 200, company, `returning company ${_id}`);
 };
 
+<<<<<<< Updated upstream
 const addOrder = (req, res) => {
   //cart is an array containing objects with structure {itemId, numBought}
   const { name, email, creditcard, address, postalCode, cart } = req.body;
@@ -63,9 +76,23 @@ const addOrder = (req, res) => {
 };
 
 const getOrders = (req, res) => {};
+=======
+// const addOrder = async (req, res) => {
+// try{
+//   const orderInfo = req.body;
 
-const getOrder = (req, res) => {};
+// }
 
+// }
+
+// const getOrder = async(req, res) => {
+// try{
+//   await
+>>>>>>> Stashed changes
+
+// }
+
+<<<<<<< Updated upstream
 const addUser = (req, res) => {
   const { name, email } = req.body;
   if (!name || !email) {
@@ -110,6 +137,13 @@ const getUser = (req, res) => {
   }
   sendResponse(res, 200, user, `returning user ${_id}`);
 };
+=======
+// };
+
+function addCustomer(req, res) {}
+//get all customers
+const getCustomer = (req, res) => {};
+>>>>>>> Stashed changes
 
 module.exports = {
   getItems,
