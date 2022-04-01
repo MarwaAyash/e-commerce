@@ -64,13 +64,14 @@ return (
                     <li>Your Order</li>
                 </StyledNavLink>
 
-                <StyledNavLink exact to="/signin">
+                {/* <StyledNavLink exact to="/signin">
                     <li>Sign In</li>
-                </StyledNavLink>
+                </StyledNavLink> */}
                 <li>
                     {/* <StyledCartIcon onClick={handleClickOnCartIcon} /> */}
+                    <StyledNavLink exact to="/cart"> 
                     <StyledCartIcon />
-
+                    </StyledNavLink>
                     {/* <ItemInCart selectedItems={selectedItems} /> */}
                 </li>
             </NavMenu>

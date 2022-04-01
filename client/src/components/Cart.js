@@ -4,10 +4,12 @@ import Checkout from './Checkout';
 import ViewOrder from './ViewOrder';
 import CartItem from './CartItem';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 const Cart = () => {
   const [modalOpen, setModalOpen] = useState();
   const cart = useSelector((state) => state.cart);
+  console.log("cart", cart);
   return (
     <>
       <Div>
