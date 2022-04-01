@@ -18,7 +18,7 @@ const ItemGrid = ({ filter }) => {
             .then((data) => setItems([...data.data]))
             .catch((err) => console.log(err));
     
-        fetch("/companies")
+        fetch("/api/get-companies")
             .then((res) => res.json())
             .then((data) => {
             setSellers([...data.data]);
