@@ -7,15 +7,13 @@ import { useState, useEffect } from 'react';
 import HomePage from "./HomePage";
 import Confirmation from "./Confirmation";
 import Header from "./Header";
-import ProductDetails from "./ProductDetails";
-// import CollectionPage from "./CollectionPage";
-import BrandsPage from "./BrandsPage";
+import Brands from "./Brands";
 import GlobalStyles from "./GlobalStyles";
 import Checkout from "./Checkout";
 import ViewOrder from "./ViewOrder";
 import Error from "./Error";
 import Footer from "./Footer";
-import SignIn from "./SignIn";
+import AllStore from "./AllStore";
 
 
 
@@ -40,15 +38,14 @@ return (
         <HomePage />
       </Route>
       <Route exact path="/brands">
-        <BrandsPage />
+        <Brands />
       </Route>
       <Route exact path="/products">
-      {/* <FilterProvider>
-        <CollectionPage handleClickOnCartIcon={handleClickOnCartIcon}
-      </FilterProvider> */}
+        <AllStore />
+
       </Route>
       <Route exact path="/products/:productId">
-        <ProductDetails handleClickOnCartIcon={handleClickOnCartIcon} />
+        {/* <ItemDetails /> */}
       </Route>
       <Route exact path="/checkout">
         <Checkout />
@@ -59,9 +56,9 @@ return (
       <Route exact path="/view-order">
         <ViewOrder />
       </Route>
-      <Route exact path="/signin" component={SignIn}>
+      {/* <Route exact path="/signin" component={SignIn}>
         <SignIn />
-      </Route>
+      </Route> */}
       <Route exact path="/error">
         <Error />
       </Route>

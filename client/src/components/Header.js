@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
 import { FaShoppingCart, FaBars, FaStar } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
+// import HeaderBrand from "./HeaderBrand";
 
 
 const Header = () => {
@@ -44,11 +45,13 @@ return (
         location.pathname.includes("/products") ? (
             <NavMenu>
                 {/* //dropdowns below?// */}
+
+                {/* <HeaderBrand /> */}
                 <StyledNavLink exact to="/">
                     Categories
                 </StyledNavLink>
 
-                <StyledNavLink exact to="/">
+                <StyledNavLink exact to="/brands">
                     Brands
                     </StyledNavLink>
 
@@ -57,16 +60,16 @@ return (
                     </StyledNavLink>
 
                 <StyledNavLink exact to="/products">
-                    <li>Shop Everything!</li>
+                    <li>Shop All</li>
                 </StyledNavLink>
 
                 <StyledNavLink exact to="/view-order">
                     <li>Your Order</li>
                 </StyledNavLink>
 
-                <StyledNavLink exact to="/signin">
+                {/* <StyledNavLink exact to="/signin">
                     <li>Sign In</li>
-                </StyledNavLink>
+                </StyledNavLink> */}
                 <li>
                     {/* <StyledCartIcon onClick={handleClickOnCartIcon} /> */}
                     <StyledCartIcon />
