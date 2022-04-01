@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
 import { FaShoppingCart, FaBars, FaStar } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
-// import HeaderBrand from "./HeaderBrand";
 
 
 const Header = () => {
@@ -12,7 +11,7 @@ const Header = () => {
 
 const location = useLocation();
 return (
-    <div
+    <Wrapper
     style={{
         background: location.pathname !== "/" && "#F061A8",
         paddingBottom: "16px",
@@ -45,13 +44,9 @@ return (
         location.pathname.includes("/products") ? (
             <NavMenu>
                 {/* //dropdowns below?// */}
+                
 
-                {/* <HeaderBrand /> */}
                 <StyledNavLink exact to="/">
-                    Categories
-                </StyledNavLink>
-
-                <StyledNavLink exact to="/brands">
                     Brands
                     </StyledNavLink>
 
@@ -60,7 +55,7 @@ return (
                     </StyledNavLink>
 
                 <StyledNavLink exact to="/products">
-                    <li>Shop All</li>
+                    <li>Shop Everything!</li>
                 </StyledNavLink>
 
                 <StyledNavLink exact to="/view-order">
@@ -72,21 +67,21 @@ return (
                 </StyledNavLink> */}
                 <li>
                     {/* <StyledCartIcon onClick={handleClickOnCartIcon} /> */}
+                    <StyledNavLink exact to="/cart"> 
                     <StyledCartIcon />
-
+                    </StyledNavLink>
                     {/* <ItemInCart selectedItems={selectedItems} /> */}
                 </li>
             </NavMenu>
         ) : (
             <></>
             )}
-            </div>
+            </Wrapper>
 );
         };
 
 const MobileIcon = styled.div`
 display: none;
-
 @media screen and (max-width: 820px) {
     display: block;
     position: absolute;
@@ -98,9 +93,17 @@ display: none;
     color: #ffffff;
 }
 `    
+
+const Wrapper = styled.div`
+background-color: #4E545C;
+color: #fff;
+`
+
 const LogoRow = styled.div`
 display: flex;
 justify-content: center;
+/* background-color: #4E545C;
+color: #fff; */
 `
 
 const Title = styled.h1`
@@ -114,7 +117,7 @@ display: flex;
 justify-content: space-around;
 color: #ffffff;
 text-transform: uppercase;
-
+/* background-color: #4E545C; */
 @media screen and (max-width: 820px) {
     display: none !important;
 } 
@@ -127,7 +130,6 @@ text-decoration: none;
 const StyledNavLink = styled(NavLink)`
 cursor: pointer;
 color: #ffffff;
-
 &:hover {
     color: ${theme.accentColor};
 }
@@ -136,17 +138,11 @@ color: #ffffff;
 }
 `
 
-// const ItemInCart = styled(FaStar)`
-// visibility: ${({ selectedItems }) => selectedItems[0] ? "visible" : "hidden"};
-// transform: translate(-4px, -20px);
-// fill: ${theme.accentColor};
-// `
 
 const StyledCartIcon = styled(FaShoppingCart)`
 fill: white;
 cursor: pointer;
 font-size: 18px;
-
 &:hover {
     fill: ${theme.accentColor};
     transition: 0.8s ease-out;
