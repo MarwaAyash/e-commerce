@@ -22,7 +22,7 @@ const ItemGrid = ({ filter }) => {
             .then((res) => res.json())
             .then((data) => {
             setSellers([...data.data]);
-            // console.log(data.data);
+        
             })
             .catch((err) => console.log(err));
         }, []);
