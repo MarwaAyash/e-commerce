@@ -16,10 +16,11 @@ import ViewOrder from "./ViewOrder";
 import Error from "./Error";
 import Footer from "./Footer";
 import SignIn from "./SignIn";
+import Cart from "./Cart";
 
 
 
-function App() {
+const App = () => {
   const [isCartVisible, setIsCartVisible] = useState(false);
   // const [bacon, setBacon] = useState(null);
   
@@ -50,6 +51,9 @@ return (
       <Route exact path="/products/:productId">
         <ProductDetails handleClickOnCartIcon={handleClickOnCartIcon} />
       </Route>
+      <Route exact path="/cart">
+        <Cart />
+      </Route>
       <Route exact path="/checkout">
         <Checkout />
       </Route>
@@ -75,5 +79,3 @@ return (
 
 
 export default App;
-
-
