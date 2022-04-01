@@ -7,9 +7,7 @@ import { useState, useEffect } from 'react';
 import HomePage from "./HomePage";
 import Confirmation from "./Confirmation";
 import Header from "./Header";
-import ProductDetails from "./ProductDetails";
-// import CollectionPage from "./CollectionPage";
-import BrandsPage from "./BrandsPage";
+import Brands from "./Brands";
 import GlobalStyles from "./GlobalStyles";
 import Checkout from "./Checkout";
 import ViewOrder from "./ViewOrder";
@@ -40,9 +38,8 @@ return (
       </Route>
       
       <Route exact path="/products">
-      {/* <FilterProvider>
-        <CollectionPage handleClickOnCartIcon={handleClickOnCartIcon}
-      </FilterProvider> */}
+        <AllStore />
+
       </Route>
       <Route exact path="/products/:productId">
         <ProductDetails />

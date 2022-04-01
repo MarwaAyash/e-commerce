@@ -1,0 +1,1 @@
+// all products == '/api/get-items'

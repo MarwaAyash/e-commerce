@@ -82,7 +82,6 @@ return (
 
 const MobileIcon = styled.div`
 display: none;
-
 @media screen and (max-width: 820px) {
     display: block;
     position: absolute;
@@ -119,7 +118,6 @@ justify-content: space-around;
 color: #ffffff;
 text-transform: uppercase;
 /* background-color: #4E545C; */
-
 @media screen and (max-width: 820px) {
     display: none !important;
 } 
@@ -132,7 +130,6 @@ text-decoration: none;
 const StyledNavLink = styled(NavLink)`
 cursor: pointer;
 color: #ffffff;
-
 &:hover {
     color: ${theme.accentColor};
 }
@@ -146,7 +143,6 @@ const StyledCartIcon = styled(FaShoppingCart)`
 fill: white;
 cursor: pointer;
 font-size: 18px;
-
 &:hover {
     fill: ${theme.accentColor};
     transition: 0.8s ease-out;
