@@ -5,6 +5,28 @@ import Footer from "./Footer";
 import Header from "./Header";
 import ItemGrid from "./ItemGrid";
 
+// <<<<<<< nother
+// const HomePage = () => {
+//     return <div>
+//         <MainCont>
+//         HomePage
+//         <Heading>Popular Brands</Heading>
+//         <HomeBrands />
+//         </MainCont>
+//         </div>;
+// };
+
+// const Heading = styled.h2`
+// text-align: center;
+// color: black;
+// margin-top: 130px;
+// margin-bottom: -25px;
+// `
+// const MainCont = styled.div`
+// background: white;
+
+// `
+// =======
 
 
 const HomePage = () => {
@@ -130,5 +152,6 @@ const Category = styled.div`
         color: red;
     }
 `;
+// >>>>>>> master
 
 export default HomePage;

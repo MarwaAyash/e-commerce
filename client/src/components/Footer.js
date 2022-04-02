@@ -15,23 +15,19 @@ const Footer = () => {
         <LinksMain>
           <Wrapper>
             <FooterLinkItems>
-              <LinkTitles>About Us</LinkTitles>
-              <FooterLink to="/">Lotta Info</FooterLink>
-            </FooterLinkItems>
-            <FooterLinkItems>
-              <LinkTitles>Customer Care</LinkTitles>
+              <LinkTitles>Get To Know Us</LinkTitles>
+              <FooterLink to="/">Careers</FooterLink>
+              <FooterLink to="/">Investor Relations</FooterLink>
               <FooterLink to="/">Contact Us</FooterLink>
             </FooterLinkItems>
           </Wrapper>
           <Wrapper>
             <FooterLinkItems>
-              <LinkTitles>My Account</LinkTitles>
-              <FooterLink to="/">Profile</FooterLink>
-            </FooterLinkItems>
-            <FooterLinkItems>
-              <LinkTitles>Social Media</LinkTitles>
-              <FooterLink to="/">Facebook</FooterLink>
-              <FooterLink to="/">Instagram</FooterLink>
+              <LinkTitles>Let Us Help You</LinkTitles>
+              <FooterLink to="/">My Profile</FooterLink>
+              <FooterLink to="/">My Account</FooterLink>
+              <FooterLink to="/">Customer Service</FooterLink>
+              <FooterLink to="/">Shipping Rates and Policies</FooterLink>
             </FooterLinkItems>
           </Wrapper>
         </LinksMain>
@@ -40,14 +36,11 @@ const Footer = () => {
             <Logo onClick={handleClickScroll} to="/">
               <span>COOLSTUFF</span>
             </Logo>
-            {/* <CopyRight>
-              Copyright © {new Date().getFullYear()}. All Rights Reserved{" "}
-            </CopyRight> */}
             <Icons>
-              <IconLink href="/" target="_blank">
+              <IconLink href="/">
                 <FaFacebook />
               </IconLink>
-              <IconLink href="/" target="_blank">
+              <IconLink href="/">
                 <FaInstagram />
               </IconLink>
             </Icons>
@@ -59,7 +52,7 @@ const Footer = () => {
 };
 
 const Container = styled.div`
-  background-color: #4E545C;
+  background-color: #232F3E;
   color: #fff;
   
 `;
@@ -107,7 +100,6 @@ const FooterLinkItems = styled.div`
 
 const LinkTitles = styled.h1`
   font-size: 14px;
-  margin-bottom: 16px;
 `;
 
 const FooterLink = styled(Link)`
@@ -142,20 +134,12 @@ const Logo = styled(Link)`
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
-  font-size: 1.9rem;
+  font-size: 28px;
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
   font-weight: bold;
   font-family: ${theme.headingFont};
 `;
-
-// const CopyRight = styled.small`
-//   color: #fff;
-//   margin-bottom: 16px;
-//   font-family: ${theme.contentFont};
-//   line-height: 2;
-// `;
 
 const Icons = styled.div`
   display: flex;

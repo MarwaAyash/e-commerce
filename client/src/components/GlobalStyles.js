@@ -2,7 +2,15 @@ import { createGlobalStyle } from "styled-components";
 
 export const theme = {
   accentColor: "#0010f2",
+
+  //accentColor: "#ff9900",//
+
+
   hoverAccentColor: "#C64500",
+
+  //hoverAccentColor: "#ff9900",//
+  //hoverAccentColor: "#FF9900",//
+
   fontColor: "#323232",
   headingFont: "Dela Gothic One, sans-serif",
   contentFont: "Lato, sans-serif",
@@ -18,12 +26,6 @@ export default createGlobalStyle`
   }
   body {
   margin: 0 auto;
-    /* background-image: url('/images/backgroundImg.jpg'); */
-  background-size: cover;
-  background-position: center;
-  box-shadow:inset 0 0 0 2000px rgb(48,48,48, 0.4);
-  overflow-x: hidden;
-  background-repeat: no-repeat;
   }
   
   

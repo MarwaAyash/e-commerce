@@ -23,7 +23,13 @@ const AllStore = () => {
           .map((item) => {
             return (
               <li className="item-name">
-                <Link to={"/products?items=" + item.name}>{item.name}</Link>
+                   {/* <StyledLinks to={`/items/${item.id}`}>{item.name}</StyledLinks> */}
+                <Link to={`/products/${item._id}`}>{item.name}
+                <img src={item.imageSrc} alt={"img of "+item.name}/>
+                </Link>
+                <p>Price: {item.price}</p><p>{item.body_location}</p><p>Category: {item.category}</p><p>Number In Stock: {item.numInStock}</p>
+
+
               </li>
             );
           })}
@@ -32,7 +38,7 @@ const AllStore = () => {
   );
 };
 
-export default AllStore;
+
 
 const Div = Styled.div`
 padding: 3rem;
@@ -65,3 +71,5 @@ background: white;
     }
 }
 `;
+
+export default AllStore;

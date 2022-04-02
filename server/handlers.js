@@ -26,6 +26,8 @@ const getItem = (req, res) => {
   sendResponse(res, 200, item, `returning item ${_id}`);
 };
 
+// 
+
 const getCompanies = (req, res) => {
   return sendResponse(res, 200, res.locals.companies, "all companies");
 };

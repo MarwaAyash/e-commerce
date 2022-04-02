@@ -12,8 +12,11 @@ import GlobalStyles from "./GlobalStyles";
 import Checkout from "./Checkout";
 import ViewOrder from "./ViewOrder";
 import Error from "./Error";
-//import Footer from "./Footer";
-// import SignIn from "./SignIn";
+
+import Footer from "./Footer";
+import AllStore from "./AllStore";
+import ProductDetails from "./ProductDetails";
+
 import Cart from "./Cart";
 
 
@@ -47,6 +50,11 @@ return (
       <Route exact path="/cart">
         <Cart />
       </Route>
+
+      <Route exact path="/products/:_id">
+        <ProductDetails handleClickOnCartIcon={handleClickOnCartIcon}/>
+     </Route>
+
       <Route exact path="/checkout">
         <Checkout />
       </Route>
@@ -56,9 +64,6 @@ return (
       <Route exact path="/view-order">
         <ViewOrder />
       </Route>
-      {/* <Route exact path="/signin" component={SignIn}>
-        <SignIn />
-      </Route> */}
       <Route exact path="/error">
         <Error />
       </Route>
