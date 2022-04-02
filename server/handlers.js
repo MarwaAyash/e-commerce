@@ -33,6 +33,8 @@ const getItem = (req, res) => {
   sendResponse(res, 200, item, `returning item ${_id}`);
 };
 
+// 
+
 const getCompanies = (req, res) => {
     res.status(200).json({ status: 200, message: "Yay", data: brands})
 

@@ -1,9 +1,8 @@
 import React, {useContext} from "react";
 import styled from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
-import { FaShoppingCart, FaBars, FaStar } from "react-icons/fa";
+import { FaShoppingCart, FaBars } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
-// import HeaderBrand from "./HeaderBrand";
 
 
 const Header = () => {
@@ -14,7 +13,7 @@ const location = useLocation();
 return (
     <div
     style={{
-        background: location.pathname !== "/" && "#F061A8",
+        background: "#232F3E",
         paddingBottom: "16px",
     }}
 >
@@ -30,7 +29,6 @@ return (
         location.pathname === "/brands" ||
         location.pathname.includes("/products") ? (
             <MobileIcon>
-                            {/* <MobileIcon onClick={handleClickOnHamburger}> */}
 
                 <FaBars />
             </MobileIcon>
@@ -44,9 +42,7 @@ return (
         location.pathname === "/brands" ||
         location.pathname.includes("/products") ? (
             <NavMenu>
-                {/* //dropdowns below?// */}
 
-                {/* <HeaderBrand /> */}
                 <StyledNavLink exact to="/">
                     Categories
                 </StyledNavLink>
@@ -67,14 +63,8 @@ return (
                     <li>Your Order</li>
                 </StyledNavLink>
 
-                {/* <StyledNavLink exact to="/signin">
-                    <li>Sign In</li>
-                </StyledNavLink> */}
                 <li>
-                    {/* <StyledCartIcon onClick={handleClickOnCartIcon} /> */}
                     <StyledCartIcon />
-
-                    {/* <ItemInCart selectedItems={selectedItems} /> */}
                 </li>
             </NavMenu>
         ) : (
@@ -135,12 +125,6 @@ color: #ffffff;
     color: none;
 }
 `
-
-// const ItemInCart = styled(FaStar)`
-// visibility: ${({ selectedItems }) => selectedItems[0] ? "visible" : "hidden"};
-// transform: translate(-4px, -20px);
-// fill: ${theme.accentColor};
-// `
 
 const StyledCartIcon = styled(FaShoppingCart)`
 fill: white;

@@ -14,6 +14,7 @@ import ViewOrder from "./ViewOrder";
 import Error from "./Error";
 import Footer from "./Footer";
 import AllStore from "./AllStore";
+import ProductDetails from "./ProductDetails";
 
 
 
@@ -42,11 +43,12 @@ return (
       </Route>
       <Route exact path="/products">
         <AllStore />
+      </Route>
 
-      </Route>
-      <Route exact path="/products/:productId">
-        {/* <ItemDetails /> */}
-      </Route>
+      <Route exact path="/products/:_id">
+        <ProductDetails handleClickOnCartIcon={handleClickOnCartIcon}/>
+     </Route>
+
       <Route exact path="/checkout">
         <Checkout />
       </Route>
@@ -56,9 +58,6 @@ return (
       <Route exact path="/view-order">
         <ViewOrder />
       </Route>
-      {/* <Route exact path="/signin" component={SignIn}>
-        <SignIn />
-      </Route> */}
       <Route exact path="/error">
         <Error />
       </Route>
