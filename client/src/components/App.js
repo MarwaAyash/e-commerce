@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BrowserRouter as Router, Switch, Route  } from "react-router-dom";
+import { BrowserRouter, Switch, Route  } from "react-router-dom";
 
 import { useState, useEffect } from 'react';
 
@@ -12,40 +12,40 @@ import GlobalStyles from "./GlobalStyles";
 import Checkout from "./Checkout";
 import ViewOrder from "./ViewOrder";
 import Error from "./Error";
-import Footer from "./Footer";
-import AllStore from "./AllStore";
+//import Footer from "./Footer";
+// import SignIn from "./SignIn";
+import Cart from "./Cart";
 
 
 
-function App() {
-  const [isCartVisible, setIsCartVisible] = useState(false);
-  // const [bacon, setBacon] = useState(null);
+const App = () => {
+  // const [isCartVisible, setIsCartVisible] = useState(false);
+  // // const [bacon, setBacon] = useState(null);
   
-  
-  const handleClickOnCartIcon = () => {
-    setIsCartVisible(!isCartVisible)
-  };
+
+  // const handleClickOnCartIcon = () => {
+  //   setIsCartVisible(!isCartVisible)
+  // };
 
 
 return (
-  <>
+  <BrowserRouter>
   <GlobalStyles />
-  <Router>
-    <Header />
-    <main>
+  <Header/>
     <Switch>
       <Route exact path="/">
         <HomePage />
       </Route>
-      <Route exact path="/brands">
-        <Brands />
-      </Route>
+      
       <Route exact path="/products">
         <AllStore />
 
       </Route>
       <Route exact path="/products/:productId">
-        {/* <ItemDetails /> */}
+        <ProductDetails />
+      </Route>
+      <Route exact path="/cart">
+        <Cart />
       </Route>
       <Route exact path="/checkout">
         <Checkout />
@@ -63,14 +63,10 @@ return (
         <Error />
       </Route>
     </Switch>
-</main>
-<Footer />
-  </Router>
-  </>
+
+  
+  </BrowserRouter>
 );
 };
 
-
 export default App;
-
-

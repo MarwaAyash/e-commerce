@@ -7,19 +7,10 @@ const morgan = require("morgan");
 const items = require("./data/items.json");
 //res.locals.companies to access
 const companies = require("./data/companies.json");
-let orders = [];
-let users = [];
+const orders = [];
+const customers = [];
 
-const {
-  getItems,
-  getCompanies,
-  getItem,
-  getCompany,
-  addUser,
-  getUser,
-  addOrder,
-} = require("./handlers");
-const { getUsers } = require("../../mini-project-facespace/backend/handlers");
+const { getItems, getCompanies, getItem, getCompany } = require("./handlers");
 
 const PORT = 4000;
 
@@ -37,12 +28,11 @@ const passCompaniesTo = (req, res, func) => {
 
 const passOrdersTo = (req, res, func) => {
   res.locals.orders = orders;
-  res.locals.items = items;
   func();
 };
 
-const passUsersTo = (req, res, func) => {
-  res.locals.users = users;
+const passCustomersTo = (req, res, func) => {
+  res.locals.customers = customers;
   func();
 };
 
@@ -70,9 +60,5 @@ express()
   .get("/api/get-item/:_id", passItemsTo, getItem)
   .get("/api/get-companies", passCompaniesTo, getCompanies)
   .get("/api/get-company/:_id", passCompaniesTo, getCompany)
-  .post("/api/add-user", passUsersTo, addUser)
-  .get("/api/get-users", passUsersTo, getUsers)
-  .get("/api/get-user/:_id", passUsersTo, getUser)
-  .post("/api/add-order", passOrdersTo, addOrder)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
