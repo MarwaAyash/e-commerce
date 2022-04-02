@@ -46,7 +46,7 @@ return (
                 {/* //dropdowns below?// */}
                 
 
-                <StyledNavLink exact to="/">
+                <StyledNavLink exact to="/brands">
                     Brands
                     </StyledNavLink>
 

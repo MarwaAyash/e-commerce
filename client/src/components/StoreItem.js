@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import { addItem } from "./Actions";
-// import { useDispatch } from "react-redux";
+import { addItem } from "../actions";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const StoreItem = ({ item, company }) => {
@@ -18,9 +18,14 @@ const StoreItem = ({ item, company }) => {
 
     const { _id: companyIdNum, name: companyName, url, country } = company;
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+
     const handleAddItem = () =>{
-        
+        fetch("/cart", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(item),
+        }).then(() => dispatch(addItem(item)));
     }
 
     return (
@@ -29,7 +34,7 @@ const StoreItem = ({ item, company }) => {
             <ImageWrapper>
             <Image alt="item" src={imageSrc} />
             </ImageWrapper>
-            <StyledNavLink exact to="/products/:id">{name}</StyledNavLink>
+            <StyledNavLink exact to="/products/:_id">{name}</StyledNavLink>
             <Title>{companyName}</Title>
             <Price>{price}</Price>
             <p style={{ color: "black", margin: 0 }}>Category: {category}</p>
@@ -39,7 +44,7 @@ const StoreItem = ({ item, company }) => {
                 <BtnWrapper>
                 <Add
                     disabled
-                    // onClick={() => dispatch(addItem({ id, name, price, image }))}
+                    
                 >
                     Out of stock
                 </Add>

@@ -45,7 +45,9 @@ const getCompany = (req, res) => {
   sendResponse(res, 200, company, `returning company ${_id}`);
 };
 
-const addOrder = (req, res) => {};
+const addOrder = (req, res) => {
+  const { name, email, creditcard, address, postalCode, cart } = req.body;
+};
 
 const getOrder = (req, res) => {};
 

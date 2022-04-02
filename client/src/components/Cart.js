@@ -7,6 +7,11 @@ const Cart = () => {
 }
 
 export default Cart
+
+
+
+
+
 // import React from 'react';
 // import styled from 'styled-components';
 // import Checkout from './Checkout';

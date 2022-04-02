@@ -10,7 +10,7 @@ const companies = require("./data/companies.json");
 const orders = [];
 const customers = [];
 
-const { getItems, getCompanies, getItem, getCompany } = require("./handlers");
+const { getItems, getCompanies, getItem, getCompany, addOrder } = require("./handlers");
 
 const PORT = 4000;
 
@@ -60,5 +60,6 @@ express()
   .get("/api/get-item/:_id", passItemsTo, getItem)
   .get("/api/get-companies", passCompaniesTo, getCompanies)
   .get("/api/get-company/:_id", passCompaniesTo, getCompany)
+  //.post("/api/add-order", passOrdersTo, addOrder)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));

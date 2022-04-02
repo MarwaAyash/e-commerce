@@ -12,6 +12,7 @@ import GlobalStyles from "./GlobalStyles";
 import Checkout from "./Checkout";
 import ViewOrder from "./ViewOrder";
 import Error from "./Error";
+import ProductDetails from "./ProductDetails";
 //import Footer from "./Footer";
 // import SignIn from "./SignIn";
 import Cart from "./Cart";
@@ -26,7 +27,7 @@ const App = () => {
   // const handleClickOnCartIcon = () => {
   //   setIsCartVisible(!isCartVisible)
   // };
-
+  
 
 return (
   <BrowserRouter>
@@ -37,13 +38,18 @@ return (
         <HomePage />
       </Route>
       
-      <Route exact path="/products">
-        <AllStore />
+      {/* <Route exact path="/products">
+        <AllStore /> */}
 
-      </Route>
-      <Route exact path="/products/:productId">
+      {/* </Route> */}
+      <Route exact path="/products/:id">
         <ProductDetails />
       </Route>
+      <Route exact path="/brands">
+      
+        <Brands />
+      </Route>
+
       <Route exact path="/cart">
         <Cart />
       </Route>
