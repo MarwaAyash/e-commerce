@@ -11,7 +11,7 @@ const Header = () => {
 
 const location = useLocation();
 return (
-    <div
+    <Wrapper
     style={{
         background: "#232F3E",
         paddingBottom: "16px",
@@ -43,11 +43,10 @@ return (
         location.pathname.includes("/products") ? (
             <NavMenu>
 
-                <StyledNavLink exact to="/">
-                    Categories
-                </StyledNavLink>
+                {/* //dropdowns below?// */}
 
-                <StyledNavLink exact to="/brands">
+
+                <StyledNavLink exact to="/">
                     Brands
                     </StyledNavLink>
 
@@ -56,7 +55,7 @@ return (
                     </StyledNavLink>
 
                 <StyledNavLink exact to="/products">
-                    <li>Shop All</li>
+                    <li>Shop Everything!</li>
                 </StyledNavLink>
 
                 <StyledNavLink exact to="/view-order">
@@ -64,19 +63,23 @@ return (
                 </StyledNavLink>
 
                 <li>
+
+                    {/* <StyledCartIcon onClick={handleClickOnCartIcon} /> */}
+                    <StyledNavLink exact to="/cart"> 
                     <StyledCartIcon />
+                    </StyledNavLink>
+                    {/* <ItemInCart selectedItems={selectedItems} /> */}
                 </li>
             </NavMenu>
         ) : (
             <></>
             )}
-            </div>
+            </Wrapper>
 );
         };
 
 const MobileIcon = styled.div`
 display: none;
-
 @media screen and (max-width: 820px) {
     display: block;
     position: absolute;
@@ -88,9 +91,17 @@ display: none;
     color: #ffffff;
 }
 `    
+
+const Wrapper = styled.div`
+background-color: #4E545C;
+color: #fff;
+`
+
 const LogoRow = styled.div`
 display: flex;
 justify-content: center;
+/* background-color: #4E545C;
+color: #fff; */
 `
 
 const Title = styled.h1`
@@ -104,7 +115,7 @@ display: flex;
 justify-content: space-around;
 color: #ffffff;
 text-transform: uppercase;
-
+/* background-color: #4E545C; */
 @media screen and (max-width: 820px) {
     display: none !important;
 } 
@@ -117,7 +128,6 @@ text-decoration: none;
 const StyledNavLink = styled(NavLink)`
 cursor: pointer;
 color: #ffffff;
-
 &:hover {
     color: ${theme.accentColor};
 }
@@ -130,7 +140,6 @@ const StyledCartIcon = styled(FaShoppingCart)`
 fill: white;
 cursor: pointer;
 font-size: 18px;
-
 &:hover {
     fill: ${theme.accentColor};
     transition: 0.8s ease-out;

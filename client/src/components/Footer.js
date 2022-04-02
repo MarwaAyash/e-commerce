@@ -54,6 +54,7 @@ const Footer = () => {
 const Container = styled.div`
   background-color: #232F3E;
   color: #fff;
+  
 `;
 
 const FooterWrap = styled.div`

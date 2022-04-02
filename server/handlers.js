@@ -2,19 +2,12 @@
 
 const { v4: uuidv4 } = require("uuid");
 
-const brands = require("./data/companies.json")
-const items = require("./data/items.json")
-
-// const getAllBrands = (req, res) => {
-//   res.status(200).json({ status: 200, message: "Yay", data: brands})
-// }
-
 const sendResponse = (res, status, data, message = "") => {
   return res.status(status).json({ status, data, message });
 };
 
 const getItems = (req, res) => {
-  res.status(200).json({ status: 200, message: "Yay", data: items})
+  sendResponse(res, 200, res.locals.items, "all items");
 };
 
 const getItem = (req, res) => {
@@ -36,8 +29,7 @@ const getItem = (req, res) => {
 // 
 
 const getCompanies = (req, res) => {
-    res.status(200).json({ status: 200, message: "Yay", data: brands})
-
+  return sendResponse(res, 200, res.locals.companies, "all companies");
 };
 
 const getCompany = (req, res) => {
