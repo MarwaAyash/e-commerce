@@ -132,6 +132,17 @@ const getOrder = (req, res) => {
   sendResponse(res, 200, order, `returning order ${_id}`);
 };
 
+const deleteOrder = (req, res) => {
+  const { _id } = req.body;
+  const index = getIndexById(res.locals.orders, _id);
+  if (!index) {
+    return sendResponse(res, 200, req.body, `order with id ${_id} not found`);
+  }
+
+  res.locals.orders = res.locals.orders.splice(index, 1);
+  sendResponse(res, 200, { success: true }, "order deleted");
+};
+
 const updateOrder = (req, res) => {
   const { _id, name, email, address, postalCode, cart } = req.body;
 };
@@ -148,4 +159,5 @@ module.exports = {
   addOrder,
   getOrders,
   getOrder,
+  deleteOrder,
 };

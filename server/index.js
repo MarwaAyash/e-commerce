@@ -18,6 +18,7 @@ const {
   addOrder,
   getOrders,
   getOrder,
+  deleteOrder,
 } = require("./handlers");
 
 const PORT = 4000;
@@ -72,5 +73,7 @@ express()
   .post("/api/add-order", passOrdersTo, addOrder)
   .get("/api/get-orders", passOrdersTo, getOrders)
   .get("/api/get-order/:_id", passOrdersTo, getOrder)
+  //takes an object {_id} as body of request
+  .delete("/api/cancel-order", passOrdersTo, deleteOrder)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
