@@ -18,4 +18,18 @@ const getItemById = (itemsArray, id) => {
   return item;
 };
 
-module.exports = { sendResponse, getItemById };
+const getIndexById = (array, id) => {
+  let index;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i]._id === Number(id)) {
+      index = i;
+      break;
+    }
+  }
+  if (index === undefined) {
+    return null;
+  }
+  return index;
+};
+
+module.exports = { sendResponse, getItemById, getIndexById };
