@@ -1,74 +1,128 @@
-import React, {useEffect, useState} from "react";
-import Styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import ItemGrid from "./ItemGrid";
 
 const AllStore = () => {
-  const [items, setItems] = useState([]);
+  const defaultFilterState = [
+    "Entertainment",
+    "Fitness",
+    "Medical",
+    "Lifestyle",
+];
+const [filter, setFilter] = useState([...defaultFilterState]);
+const [entChecked, setEntChecked] = useState(false);
+const [fitChecked, setFitChecked] = useState(false);
+const [medChecked, setMedChecked] = useState(false);
+const [lifeChecked, setLifeChecked] = useState(false);
+const [filter2, setFilter2] = useState([]);
 
-  useEffect(() => {
-    fetch("/api/get-items")
-      .then((res) => res.json())
-      .then((res) => {
-        setItems(res.data);
-      });
-  }, []);
+useEffect(() => {
+    const checkedArray = [entChecked, fitChecked, lifeChecked, medChecked];
 
-  return (
-    <Div>
-      <ul className="items-list">
-        {items
-          .sort((a, b) => {
-            return a.name > b.name;
-          })
-          .map((item) => {
-            return (
-              <li className="item-name">
-                   {/* <StyledLinks to={`/items/${item.id}`}>{item.name}</StyledLinks> */}
-                <Link to={`/products/${item._id}`}>{item.name}
-                <img src={item.imageSrc} alt={"img of "+item.name}/>
-                </Link>
-                <p>Price: {item.price}</p><p>{item.body_location}</p><p>Category: {item.category}</p><p>Number In Stock: {item.numInStock}</p>
+    checkedArray.every((box) => box === false)
+    ? setFilter([...defaultFilterState])
+    : setFilter([...filter2]);
+}, [entChecked, fitChecked, medChecked, lifeChecked]);
 
+const handleFilter = (e, categoryTarget, setCategoryTarget) => {
+    const category = e.target.value;
+    setCategoryTarget(!categoryTarget);
+    if (categoryTarget === false) {
+    if (!filter2.includes(category)) {
+        setFilter2([...filter2, category]);
+    } else {
+        setFilter2([...filter]);
+    }
+    } else {
+    const newF = filter2.filter((i) => i !== category);
+    setFilter2([...newF]);
+    }
+};
+return (
+    <Wrapper>
+    <Category>
+        <h2>Category:</h2>
+        <label>
+        <input
+            type="checkbox"
+            name="category"
+            value="Entertainment"
+            onChange={(e) => handleFilter(e, entChecked, setEntChecked)}
+            checked={entChecked}
+        />
+        Entertainment
+        </label>
+        <label>
+        <input
+            type="checkbox"
+            name="category"
+            value="Fitness"
+            onChange={(e) => handleFilter(e, fitChecked, setFitChecked)}
+            checked={fitChecked}
+        />
+        Fitness
+        </label>
+        <label>
+        <input
+            type="checkbox"
+            name="category"
+            value="Lifestyle"
+            onChange={(e) => handleFilter(e, lifeChecked, setLifeChecked)}
+            checked={lifeChecked}
+        />
+        Lifestyle
+        </label>
+        <label>
+        <input
+            type="checkbox"
+            name="category"
+            value="Medical"
+            onChange={(e) => handleFilter(e, medChecked, setMedChecked)}
+            checked={medChecked}
+        />
+        Medical
+        </label>
+    </Category>
+    <ItemGridWrapper>
+        <ItemGrid filter={filter} />
+    </ItemGridWrapper>
 
-              </li>
-            );
-          })}
-      </ul>
-    </Div>
-  );
+    </Wrapper>
+);
 };
 
+const Wrapper = styled.div`
+display: grid;
+grid-template-areas:
+    "header header header header header header "
+    "sidebar  main main main main main"
+    "footer footer footer footer footer footer";
+grid-template-columns: 300px auto;
+border-top: 1px solid black;
+//height: 100vh;
+`;
 
+const ItemGridWrapper = styled.main`
+grid-area: main;
+padding: 16px 20px;
+`;
 
-const Div = Styled.div`
-padding: 48px;
+const FooterWrapper = styled.footer`
+grid-area: footer;
+padding: 16px 20px;
+`;
+const Category = styled.div`
+grid-area: sidebar;
 display: flex;
-justify-content: center;
-background: white;
-.brands-list {
-    column-count: 3;
+flex-direction: column;
+label {
+font-size: 18px;
+padding: 5px;
 }
-@media screen and ( max-width: 1080px) {
-    .brands-list {
-    column-count: 2;
-}
-}
-@media screen and (max-width: 820px) {
-    .brands-list {
-    column-count: 1;
-}
-}
-.brand-name {
-    color: white;
-    font-size: 1.5em;
-    font-weight: 700;
-    a {
-        color: black;
-        &:hover {
-            text-decoration: underline;
-        }
-    }
+h2 {
+color: red;
 }
 `;
 
-export default AllStore;
+export default AllStore
