@@ -1,8 +1,16 @@
 import { createGlobalStyle } from "styled-components";
 
 export const theme = {
-  accentColor: "#0010f2",
+
+  //for the menu links and stuff
+  accentColor: "#FFEF00",
+
+
   hoverAccentColor: "#C64500",
+
+  //hoverAccentColor: "#ff9900",//
+  //hoverAccentColor: "#FF9900",//
+
   fontColor: "#323232",
   headingFont: "Dela Gothic One, sans-serif",
   contentFont: "Lato, sans-serif",
@@ -18,12 +26,6 @@ export default createGlobalStyle`
   }
   body {
   margin: 0 auto;
-    /* background-image: url('/images/backgroundImg.jpg'); */
-  background-size: cover;
-  background-position: center;
-  box-shadow:inset 0 0 0 2000px rgb(48,48,48, 0.4);
-  overflow-x: hidden;
-  background-repeat: no-repeat;
   }
   
   
@@ -53,8 +55,8 @@ a {
 }
 .accentBtn {
   border-radius: 5px;
-  background-color: ${theme.accentColor};
-  color: white;
+  background-color: #FFCE00;
+  color: black;
   border: none;
   padding: 8px 15px;
   font-family: ${theme.contentFont};
@@ -64,7 +66,7 @@ a {
   cursor: pointer;
   
   &:hover {
-    background-color: ${theme.hoverAccentColor};
+    background-color: #FFF200;
   }
   @media screen and (min-width: 900px) {
     &:active {

@@ -39,7 +39,7 @@ const Home = () => {
                     <Info>
                         <Company
                         onClick={() => {
-                            history.push(`/api/get-company/${item.companyId}`);
+                            history.push(`/company/${item.companyId}`);
                         }}
                         >
                         {item.companyName}
@@ -47,7 +47,7 @@ const Home = () => {
                         {item.name}
                         <Button
                         onClick={() => {
-                            history.push(`/api/get-item/${item._id}`);
+                            history.push(`/products/${item._id}`);
                         }}
                         >
                         Shop Now
