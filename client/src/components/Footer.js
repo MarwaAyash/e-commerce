@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { theme } from "./GlobalStyles";
+import LogoWow from "../assets/best buy4.svg";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
@@ -10,15 +11,34 @@ const Footer = () => {
   };
 
   return (
+    <Container>
+      <FooterWrap>
+        <LinksMain>
+          <Wrapper>
+            <FooterLinkItems>
+              <LinkTitles>Get To Know Us</LinkTitles>
+              <FooterLink to="/">Careers</FooterLink>
+              <FooterLink to="/">Investor Relations</FooterLink>
+              <FooterLink to="/">Contact Us</FooterLink>
+            </FooterLinkItems>
+          </Wrapper>
+          <Wrapper>
+            <FooterLinkItems>
+              <LinkTitles>Let Us Help You</LinkTitles>
+              <FooterLink to="/">My Profile</FooterLink>
+              <FooterLink to="/">My Account</FooterLink>
+              <FooterLink to="/">Customer Service</FooterLink>
+              <FooterLink to="/">Shipping Rates and Policies</FooterLink>
+            </FooterLinkItems>
+          </Wrapper>
+        </LinksMain>
+        <Media>
+          <MediaWrapper>
+            <Logo onClick={handleClickScroll} to="/">
+              {/* <span>COOLSTUFF</span> */}
+              <LogoImg src={LogoWow}/>
 
-  <Wrapper  style={{
-    background: "#0046BE",
-    paddingBottom: "16px",
-}}>
-      <div>
-        <CompanyInfoContainer>
-          <Logo onClick={handleClickScroll} to="/">
-              <span>COOLSTUFF</span>
+
             </Logo>
           <li>support@coolstuff.ca</li>
           
@@ -118,7 +138,7 @@ const LinkTitles = styled.h1`
 
 const FooterLink = styled(Link)`
   text-decoration: none;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
   font-size: 14px;
   color: #fff;
   transition: 0.3s ease-out;
@@ -226,13 +246,18 @@ const Logo = styled(Link)`
   color: #fff;
   justify-self: start;
   cursor: pointer;
-  text-decoration: none;
+  /* text-decoration: none;
   font-size: 28px;
   display: flex;
   align-items: center;
   font-weight: bold;
-  font-family: ${theme.headingFont};
+  font-family: ${theme.headingFont}; */
 `;
+
+const LogoImg = styled.img`
+height: 85px;
+padding-bottom: -100px;
+`
 
 const Icons = styled.div`
   display: flex;
