@@ -4,6 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { FaShoppingCart, FaBars, FaStar } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
 import { AppContext } from "./AppContext";
+import LogoWow from "../assets/best buy4.svg";
 
 
 const Header = ({ handleClickOnCartIcon }) => {
@@ -20,9 +21,10 @@ return (
 >
     <LogoRow>
         <HomeNavLink exact to="/">
-            <Title>
+            {/* <Title>
                 <span>COOLSTUFF</span>
-            </Title>
+            </Title> */}
+            <Logo src={LogoWow}/>
         </HomeNavLink>
         {location.pathname === "/" ||
         location.pathname === "/confirmation" ||
@@ -90,6 +92,9 @@ display: none;
     color: #ffffff;
 }
 `    
+const Logo = styled.img`
+height: 130px;
+`
 
 const Wrapper = styled.div`
 background-color: #4E545C;

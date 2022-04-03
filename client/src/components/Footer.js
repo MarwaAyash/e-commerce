@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { theme } from "./GlobalStyles";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
+import LogoWow from "../assets/best buy4.svg";
+
 
 const Footer = () => {
   const handleClickScroll = () => {
@@ -34,7 +36,9 @@ const Footer = () => {
         <Media>
           <MediaWrapper>
             <Logo onClick={handleClickScroll} to="/">
-              <span>COOLSTUFF</span>
+              {/* <span>COOLSTUFF</span> */}
+              <LogoImg src={LogoWow}/>
+
             </Logo>
             <Icons>
               <IconLink href="/">
@@ -104,7 +108,7 @@ const LinkTitles = styled.h1`
 
 const FooterLink = styled(Link)`
   text-decoration: none;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
   font-size: 14px;
   color: #fff;
   transition: 0.3s ease-out;
@@ -133,13 +137,18 @@ const Logo = styled(Link)`
   color: #fff;
   justify-self: start;
   cursor: pointer;
-  text-decoration: none;
+  /* text-decoration: none;
   font-size: 28px;
   display: flex;
   align-items: center;
   font-weight: bold;
-  font-family: ${theme.headingFont};
+  font-family: ${theme.headingFont}; */
 `;
+
+const LogoImg = styled.img`
+height: 85px;
+padding-bottom: -100px;
+`
 
 const Icons = styled.div`
   display: flex;
