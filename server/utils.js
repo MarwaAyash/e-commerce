@@ -21,7 +21,7 @@ const getItemById = (itemsArray, id) => {
 const getIndexById = (array, id) => {
   let index;
   for (let i = 0; i < array.length; i++) {
-    if (array[i]._id === Number(id)) {
+    if (array[i]._id === id) {
       index = i;
       break;
     }

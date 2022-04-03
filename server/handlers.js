@@ -135,7 +135,8 @@ const getOrder = (req, res) => {
 const deleteOrder = (req, res) => {
   const { _id } = req.body;
   const index = getIndexById(res.locals.orders, _id);
-  if (!index) {
+  console.log(index);
+  if (index === null) {
     return sendResponse(res, 200, req.body, `order with id ${_id} not found`);
   }
 
