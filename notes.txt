@@ -37,8 +37,7 @@ Ideas:
         creditcard
         address
         Postal code
-        itemId
-        numBought       
+        cart: [{itemId, numBought}]      
     }
 
 DATA provided:
