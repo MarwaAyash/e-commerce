@@ -22,37 +22,42 @@ import Cart from "./Cart";
 
 
 const App = () => {
-  // const [isCartVisible, setIsCartVisible] = useState(false);
+  const [isCartVisible, setIsCartVisible] = useState(false);
   // // const [bacon, setBacon] = useState(null);
   
 
-  // const handleClickOnCartIcon = () => {
-  //   setIsCartVisible(!isCartVisible)
-  // };
+  const handleClickOnCartIcon = () => {
+    setIsCartVisible(!isCartVisible)
+  };
 
 
 return (
   <BrowserRouter>
   <GlobalStyles />
-  <Header/>
+  <Cart
+  isCartVisible={isCartVisible}
+  handleClickOnCartIcon={handleClickOnCartIcon}/>
+
+  <Header
+  isCartVisible={isCartVisible}
+  handleClickOnCartIcon={handleClickOnCartIcon}/>
+  
+  <main>
     <Switch>
       <Route exact path="/">
         <HomePage />
       </Route>
-      
       <Route exact path="/products">
-        <AllStore />
-
+        <AllStore handleClickOnCartIcon={handleClickOnCartIcon}/>
       </Route>
-      <Route exact path="/products/:productId">
-        <ProductDetails />
-      </Route>
-      <Route exact path="/cart">
-        <Cart />
+      <Route exact path="/brands">
+        <Brands />
       </Route>
 
       <Route exact path="/products/:_id">
+        {/* <ProductDetails /> */}
         <ProductDetails handleClickOnCartIcon={handleClickOnCartIcon}/>
+
      </Route>
 
       <Route exact path="/checkout">
@@ -67,9 +72,11 @@ return (
       <Route exact path="/error">
         <Error />
       </Route>
-    </Switch>
+                
 
-  
+    </Switch>
+    </main>
+    <Footer />
   </BrowserRouter>
 );
 };

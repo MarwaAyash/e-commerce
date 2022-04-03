@@ -52,13 +52,13 @@ const Footer = () => {
 };
 
 const Container = styled.div`
-  background-color: #232F3E;
+  background-color: #0046BE;
   color: #fff;
   
 `;
 
 const FooterWrap = styled.div`
-  padding: 48px 24px;
+  padding: 8px 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,7 +104,7 @@ const LinkTitles = styled.h1`
 
 const FooterLink = styled(Link)`
   text-decoration: none;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
   font-size: 14px;
   color: #fff;
   transition: 0.3s ease-out;

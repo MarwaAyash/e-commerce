@@ -113,9 +113,7 @@ const HomePage = () => {
             <ItemGridWrapper>
                 <ItemGrid filter={filter} />
             </ItemGridWrapper>
-            <FooterWrapper>
-                <Footer />
-            </FooterWrapper>
+  
             </Wrapper>
         );
     };
@@ -136,10 +134,6 @@ const ItemGridWrapper = styled.main`
     padding: 16px 20px;
 `;
     
-const FooterWrapper = styled.footer`
-    grid-area: footer;
-    padding: 16px 20px;
-`;
 const Category = styled.div`
     grid-area: sidebar;
     display: flex;

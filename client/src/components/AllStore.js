@@ -41,10 +41,9 @@ const AllStore = () => {
 
 
 const Div = Styled.div`
-padding: 3rem;
+padding: 48px;
 display: flex;
 justify-content: center;
-/* flex-direction: column; */
 background: white;
 .brands-list {
     column-count: 3;
