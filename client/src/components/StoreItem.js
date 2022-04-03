@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { addItem } from "../actions";
-import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
 
+import { NavLink } from "react-router-dom";
 const StoreItem = ({ item, company }) => {
     const {
         id,
@@ -18,15 +16,6 @@ const StoreItem = ({ item, company }) => {
 
     const { _id: companyIdNum, name: companyName, url, country } = company;
 
-    const dispatch = useDispatch();
-
-    const handleAddItem = () =>{
-        fetch("/cart", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(item),
-        }).then(() => dispatch(addItem(item)));
-    }
 
     return (
         <Wrapper>
@@ -34,7 +23,7 @@ const StoreItem = ({ item, company }) => {
             <ImageWrapper>
             <Image alt="item" src={imageSrc} />
             </ImageWrapper>
-            <StyledNavLink exact to="/products/:_id">{name}</StyledNavLink>
+            <StyledNavLink exact to="/products/:id">{name}</StyledNavLink>
             <Title>{companyName}</Title>
             <Price>{price}</Price>
             <p style={{ color: "black", margin: 0 }}>Category: {category}</p>
@@ -44,7 +33,7 @@ const StoreItem = ({ item, company }) => {
                 <BtnWrapper>
                 <Add
                     disabled
-                    
+                
                 >
                     Out of stock
                 </Add>
@@ -55,7 +44,9 @@ const StoreItem = ({ item, company }) => {
                 <Stock>{numInStock} left in stock</Stock>
                 <BtnWrapper>
                 <Add
-                    onClick={handleAddItem}
+                    // onClick={addToCart}
+                
+                    
                 >
                     Buy Now !
                 </Add>
@@ -81,17 +72,16 @@ const Wrapper = styled.article`
   flex-direction: column;
 `;
 
+const StyledNavLink = styled(NavLink)`
+ cursor: pointer;
+ text-decoration: underline;
+ color: black;
+ `;
 const ItemContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-`;
-
-const StyledNavLink = styled(NavLink)`
-cursor: pointer;
-text-decoration: underline;
-color: black;
 `;
 
 const ImageWrapper = styled.div`

@@ -1,209 +1,217 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { AppContext } from "./AppContext";
 
-const ProductDetails = () => {
-    const itemId = useParams();
-    //console.log("itemId", itemId);
-    const [singleItem, setSingleItem] = useState(null);
+let initialState = { product: "", quantityOfProduct: "" };
 
-    const handleAddItem = () => {
-
-    }
-    useEffect(() => {
-        fetch(`/api/get-item/${itemId}`,
-        {
-            method: "GET",
-            headers: {
-                "Content-Type": "application.json",
-            },
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log("data", data);
-                setSingleItem(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        }, []);
-
-        if (singleItem === null) {
-            return (
-                <>
-                    <Div></Div>
-                </>
-            );
-        }
-        
-        if (singleItem !== null) {
-            const item = singleItem.data;
+const ProductDetails = ({ handleClickOnCartIcon }) => {
     
-            // const handleAddItem = () => {
-            //     // fetch("/cart", {
-            //     //     method: "POST",
-            //     //     headers: { "Content-Type": "application/json" },
-            //     //     body: JSON.stringify(item),
-            //     // }).then(() => dispatch(addToCart(item)));
-            // };
+  const { selectedItems, setSelectedItems } = useContext(AppContext);
 
-        return (
-                    <>
-                    <Div>
-                        <Wrapper>
-                        <Main>
-                            <ProductImage src={item.image} />
-                            <ProductDetailsWrapper>
-                            <Header>
-                                <ProductName>{item.name}</ProductName>
-                                <SoldBy>Sold by: {item.companyId}</SoldBy>
-                            </Header>
-                            <PriceWrapper>
-                                <Price>Price:</Price>
-                                <Amount>{item.price}</Amount>
-                            </PriceWrapper>
-                            <StockWrapper>
-                                {item.numInStock === 0 && <NoStock>Unavailable</NoStock>}
-                                {item.numInStock < 5 && item.numInStock > 0 && (
-                                <LowStock>Low stock</LowStock>
-                                )}
-                                {item.numInStock >= 5 && <HighStock>In stock</HighStock>}
-                            </StockWrapper>
-                            <DetailedInfoWrapper>
-                                <LeftDetailedInfoWrapper>
-                                <CategoryName>Body location:</CategoryName>
-                                <CategoryName>Category:</CategoryName>
-                                <CategoryName>Product ID:</CategoryName>
-                                </LeftDetailedInfoWrapper>
-                                <RightDetailedInfoWrapper>
-                                <AttributeName>{item.body_location}</AttributeName>
-                                <AttributeName>{item.category}</AttributeName>
-                                <AttributeName>{item._id}</AttributeName>
-                                </RightDetailedInfoWrapper>
-                            </DetailedInfoWrapper>
-                            </ProductDetailsWrapper>
-                        </Main>
-                        <AddToCart
-                            onClick= {handleAddItem}
-                            
-                        >
-                            Buy now
-                        </AddToCart>
-                        
-                        </Wrapper>
-                    </Div>
-                    </>
-        );
-                                } 
+//   const {selectedItems, setSelectedItems} = useContext(AppContext) || {}
+
+  const [currentItem, setCurrentItem] = useState([]);
+  const [itemInCart, setItemInCart] = useState(initialState);
+  const [quantityInCart, setQuantityInCart] = useState(0);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [message, setMessage] = useState("");
+
+  let { _id } = useParams();
+
+  useEffect(() => {
+    fetch(`/api/get-item/${_id}`)
+      .then((rest) => rest.json())
+      .then((json) => {
+        setCurrentItem(json.data);
+      });
+  }, []);
+
+
+  const substractQtyHandler = () => {
+    if (selectedQuantity === 1) {
+      return;
+    }
+    setSelectedQuantity(selectedQuantity - 1);
+    setMessage("");
+  };
+
+  const addQtyHandler = () => {
+    if (selectedQuantity === currentItem.numInStock) {
+      setMessage(`Only ${currentItem.numInStock} left in stock`);
+      return;
+    }
+    setSelectedQuantity(selectedQuantity + 1);
+  };
+
+  const addToCart = () => {
+    setSelectedItems((value) => {
+      return [
+        ...value,
+        { product: currentItem, quantityOfProduct: selectedQuantity },
+      ];
+    });
+    if (itemInCart.quantityOfProduct < 1) {
+      setQuantityInCart(quantityInCart + selectedQuantity);
+      setItemInCart({
+        ...itemInCart,
+        product: currentItem,
+        quantityOfProduct: selectedQuantity,
+      });
+    }
+    if (itemInCart.quantityOfProduct !== 0) {
+      setQuantityInCart(quantityInCart + selectedQuantity);
+      setItemInCart({
+        ...itemInCart,
+        product: currentItem,
+        quantityOfProduct: quantityInCart + selectedQuantity,
+      });
+    }
+  };
+
+
+  return (
+    <Container>
+      <Wrapper>
+        <ItemCont>
+          <ItemImg src={currentItem.imageSrc} alt={currentItem.name} />
+        </ItemCont>
+        <ProductDeets>
+          <ItemTitle>{currentItem.name}</ItemTitle>
+          <Price>CAD {currentItem.price}</Price>
+    
+          <AddToCartRow>
+            <QuantityContainer>
+              <SubtractBtn onClick={substractQtyHandler}>-</SubtractBtn>
+              <Quantity>
+                {currentItem.numInStock > 0 ? selectedQuantity : 0}
+              </Quantity>
+              <AddBtn onClick={addQtyHandler}>+</AddBtn>
+            </QuantityContainer>
+            <Button
+              className="accentBtn"
+              onClick={currentItem.numInStock > 0 ? addToCart : ""}
+              currentItem={currentItem.numInStock}
+            >
+              {currentItem.numInStock > 0
+                ? `Add To Cart - ${currentItem.price}`
+                : "Out of Stock"}
+            </Button>
+          </AddToCartRow>
+          {message && <p>{message}</p>}
+
+        </ProductDeets>
+      </Wrapper>
+    </Container>
+  );
 };
 
+const Button = styled.button`
+  cursor: ${({ currentItem }) =>
+    currentItem > 0 ? "pointer" : "not-allowed !important"};
+  background-color: ${({ currentItem }) =>
+    currentItem > 0 ? "" : "gray !important"};
+`;
 
-const Div = styled.div`
-    background-color: #eaedec;
-    min-height: calc(100vh - 75px - 50px);
+const Container = styled.div`
+  background-color: white;
 `;
 
 const Wrapper = styled.div`
-    display: flex;
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  background-color: white;
+  padding: 50px;
+  flex-wrap: wrap;
+  border-radius: 50px;
+  @media screen and (max-width: 820px) {
     flex-direction: column;
-    background-color: white;
-    max-width: 1150px;
-    min-width: 900px;
-    padding: 25px;
+  }
 `;
 
-const Main = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
-const ProductImage = styled.img`
-    height: 300px;
-    width: 300px;
-    margin-right: 20px;
-`;
-
-const ProductDetailsWrapper = styled.div``;
-
-const Header = styled.div`
-    border-bottom: 2px solid #eaedec;
-`;
-
-const ProductName = styled.div`
-    font-size: 25pt;
-    font-weight: bold;
-`;
-
-const SoldBy = styled.div`
-    font-size: 10pt;
-    color: grey;
-`;
-
-const PriceWrapper = styled.div`
-    display: flex;
-    font-size: 16pt;
-    margin-top: 25px;
-`;
-
-const Price = styled.div`
-    margin-right: 10px;
-`;
-
-const Amount = styled.div`
-  font-weight: bold;
-`;
-
-const StockWrapper = styled.div`
+const ItemCont = styled.div`
   display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: white;
 `;
 
-const NoStock = styled.div`
-  color: red;
-`;
-
-const LowStock = styled.div`
-  color: orange;
-`;
-
-const HighStock = styled.div`
-  color: green;
-`;
-
-const DetailedInfoWrapper = styled.div`
-  display: flex;
-  font-size: 11pt;
-  margin-top: 25px;
-`;
-
-const LeftDetailedInfoWrapper = styled.div`
-  margin-right: 25px;
-`;
-
-const RightDetailedInfoWrapper = styled.div`
-  font-weight: bold;
-`;
-
-const CategoryName = styled.div``;
-
-const AttributeName = styled.div``;
-
-const AddToCart = styled.button`
-  padding: 10px 0px;
-  font-family: "Poppins", sans-serif;
-  color: white;
-  background-color: yellowgreen;
+const ItemImg = styled.img`
   border-radius: 5px;
-  border: none;
-  box-shadow: 2px 2px 10px rgba(161, 161, 161, 0.3);
-  cursor: pointer;
-  width: 250px;
-  text-align: center;
-  margin-top: 25px;
+  object-fit: cover;
+  width: 300px;
 `;
+
+const ProductDeets = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+`;
+
+const ItemTitle = styled.h1`
+  font-size: 22px;
+  color: black;
+`;
+
+const Price = styled.p`
+  font-size: 22px;
+  color: price;
+  margin-top: -10px;
+`;
+
+const AddToCartRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+const QuantityContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+`;
+
+const SubtractBtn = styled.button`
+  width: 60px;
+  height: 33px;
+  font-weight: 500;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  &:hover {
+    background-color: #ced0d0;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+  }
+`;
+
+const Quantity = styled.p`
+  border: 1px solid #000000;
+  padding: 3px 20px;
+  font-size: 12px;
+`;
+
+const AddBtn = styled.button`
+  width: 60px;
+  height: 33px;
+  font-weight: 500;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  &:hover {
+    background-color: #ced0d0;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+  }
+`;
+
 export default ProductDetails;

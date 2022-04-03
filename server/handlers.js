@@ -26,6 +26,8 @@ const getItem = (req, res) => {
   sendResponse(res, 200, item, `returning item ${_id}`);
 };
 
+// 
+
 const getCompanies = (req, res) => {
   return sendResponse(res, 200, res.locals.companies, "all companies");
 };
@@ -45,9 +47,7 @@ const getCompany = (req, res) => {
   sendResponse(res, 200, company, `returning company ${_id}`);
 };
 
-const addOrder = (req, res) => {
-  const { name, email, creditcard, address, postalCode, cart } = req.body;
-};
+const addOrder = (req, res) => {};
 
 const getOrder = (req, res) => {};
 

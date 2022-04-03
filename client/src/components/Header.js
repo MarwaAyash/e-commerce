@@ -13,7 +13,7 @@ const location = useLocation();
 return (
     <Wrapper
     style={{
-        background: location.pathname !== "/" && "#F061A8",
+        background: location.pathname !== "/" ,
         paddingBottom: "16px",
     }}
 >
@@ -55,7 +55,7 @@ return (
                     </StyledNavLink>
 
                 <StyledNavLink exact to="/products">
-                    <li>Shop Everything!</li>
+                    Shop Everything!
                 </StyledNavLink>
 
                 <StyledNavLink exact to="/view-order">

@@ -1,134 +1,188 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Footer from "./Footer";
-import Header from "./Header";
-import ItemGrid from "./ItemGrid";
+import React, { useEffect, useState } from "react";
+import styled, { keyframes } from "styled-components";
+import { useHistory } from "react-router-dom";
 
 
+const Home = () => {
+    const history = useHistory();
 
-const HomePage = () => {
-        const defaultFilterState = [
-            "Entertainment",
-            "Fitness",
-            "Medical",
-            "Lifestyle",
-        ];
-        const [filter, setFilter] = useState([...defaultFilterState]);
-        const [entChecked, setEntChecked] = useState(false);
-        const [fitChecked, setFitChecked] = useState(false);
-        const [medChecked, setMedChecked] = useState(false);
-        const [lifeChecked, setLifeChecked] = useState(false);
-        const [filter2, setFilter2] = useState([]);
-        
-        useEffect(() => {
-            const checkedArray = [entChecked, fitChecked, lifeChecked, medChecked];
-        
-            checkedArray.every((box) => box === false)
-            ? setFilter([...defaultFilterState])
-            : setFilter([...filter2]);
-        }, [entChecked, fitChecked, medChecked, lifeChecked]);
-        
-        const handleFilter = (e, categoryTarget, setCategoryTarget) => {
-            const category = e.target.value;
-            setCategoryTarget(!categoryTarget);
-            if (categoryTarget === false) {
-            if (!filter2.includes(category)) {
-                setFilter2([...filter2, category]);
-            } else {
-                setFilter2([...filter]);
-            }
-            } else {
-            const newF = filter2.filter((i) => i !== category);
-            setFilter2([...newF]);
-            }
-        };
-        return (
-            <Wrapper>
-            <Category>
-                <h2>Category:</h2>
-                <label>
-                <input
-                    type="checkbox"
-                    name="category"
-                    value="Entertainment"
-                    onChange={(e) => handleFilter(e, entChecked, setEntChecked)}
-                    checked={entChecked}
-                />
-                Entertainment
-                </label>
-                <label>
-                <input
-                    type="checkbox"
-                    name="category"
-                    value="Fitness"
-                    onChange={(e) => handleFilter(e, fitChecked, setFitChecked)}
-                    checked={fitChecked}
-                />
-                Fitness
-                </label>
-                <label>
-                <input
-                    type="checkbox"
-                    name="category"
-                    value="Lifestyle"
-                    onChange={(e) => handleFilter(e, lifeChecked, setLifeChecked)}
-                    checked={lifeChecked}
-                />
-                Lifestyle
-                </label>
-                <label>
-                <input
-                    type="checkbox"
-                    name="category"
-                    value="Medical"
-                    onChange={(e) => handleFilter(e, medChecked, setMedChecked)}
-                    checked={medChecked}
-                />
-                Medical
-                </label>
-            </Category>
-            <ItemGridWrapper>
-                <ItemGrid filter={filter} />
-            </ItemGridWrapper>
-            <FooterWrapper>
-                <Footer />
-            </FooterWrapper>
-            </Wrapper>
-        );
+    const [randomItems, setRandomItems] = useState(""); 
+    const handleFetch = async () => {
+        try {
+            //let response = await fetch("/product/random/10");
+        let response = await fetch("/api/get-items"); 
+        response = await response.json();
+        setRandomItems([...response.data]);
+        } catch (error) {
+        console.log(error);
+        }
     };
-    
-const Wrapper = styled.div`
-    display: grid;
-    grid-template-areas:
-            "header header header header header header "
-            "sidebar  main main main main main"
-            "footer footer footer footer footer footer";
-    grid-template-columns: 300px auto;
-    border-top: 1px solid black;
-    //height: 100vh;
+
+    useEffect(() => {
+        handleFetch();
+    }, []);
+
+    return (
+        
+        randomItems && (
+            
+        <AutoSlider>
+           
+            <SliderContent>
+            {randomItems.map((item) => {
+                return (
+                <SliderBox>
+                    <Slider>
+                    <PicArea>
+                        <Image src={item.imageSrc} height="240px" />
+                    </PicArea>
+                    <Info>
+                        <Company
+                        onClick={() => {
+                            history.push(`/api/get-company/${item.companyId}`);
+                        }}
+                        >
+                        {item.companyName}
+                        </Company>
+                        {item.name}
+                        <Button
+                        onClick={() => {
+                            history.push(`/api/get-item/${item._id}`);
+                        }}
+                        >
+                        Shop Now
+                        </Button>
+                    </Info>
+                    </Slider>
+                </SliderBox>
+                );
+            })}
+            </SliderContent>
+        </AutoSlider>
+        )
+    );
+};
+
+const AutoSlider = styled.div`
+    margin: 100px 20vw;
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 800px;
+    height: 320px;
+    box-shadow: -2px 4px 15px 0px rgba(255, 255, 255, 0.3);
+    background-color: white;
+    overflow-x: hidden;
 `;
-    
-const ItemGridWrapper = styled.main`
-    grid-area: main;
-    padding: 16px 20px;
+
+const Slide = keyframes`
+        10%{
+                transform:translateX(0);
+            }
+            14%,20%{
+                transform:translateX(-820px);
+            }
+            24%, 30%{
+                transform:translateX(-1620px);
+            }
+        34%, 40%{
+                transform:translateX(-2420px);
+            }
+        44%, 50%{
+                transform:translateX(-3220px);
+            }
+        54%, 60%{
+                transform:translateX(-4020px);
+            }
+        64%, 70%{
+                transform:translateX(-4820px);
+            }
+    74%, 80%{
+                transform:translateX(-5620px);
+            }
+        84%,  90%{
+                transform:translateX(-6420px);
+            }
+        99%,100%{
+                transform:translateX(0);
+            }
 `;
-    
-const FooterWrapper = styled.footer`
-    grid-area: footer;
-    padding: 16px 20px;
-`;
-const Category = styled.div`
-    grid-area: sidebar;
+
+const SliderContent = styled.ul`
+    margin: 0;
+
+    box-sizing: border-box;
+    list-style: none;
     display: flex;
-    flex-direction: column;
-    label {
-        font-size: 18px;
-        padding: 5px;
-    }
-    h2 {
-        color: red;
+    animation: 35s ${Slide} ease-in-out infinite;
+    &:hover {
+        animation-play-state: paused;
     }
 `;
 
-export default HomePage;
+const SliderBox = styled.li`
+    box-sizing: border-box;
+    width: 700px;
+    height: 300px;
+    display: block;
+    margin: 10px 80px 0px 20px;
+    font-size: 18px;
+`;
+
+const Slider = styled.div`
+    margin: 0;
+    margin-top: -20px;
+
+    box-sizing: border-box;
+    height: 330px;
+    width: 800px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-areas: "pic info";
+`;
+
+const PicArea = styled.div`
+    grid-area: pic;
+`;
+
+const Info = styled.div`
+    grid-area: info;
+    margin: 0;
+
+    background: linear-gradient(
+        109deg,
+        rgba(255, 255, 255, 1) 20%,
+        rgba(247, 247, 247, 1) 40%,
+        rgba(181, 181, 181, 0.9868989832261029) 100%
+    );
+
+    padding: 50px 30px 20px 20px;
+`;
+
+const Image = styled.img`
+    padding: 30px 0 0 30px;
+    object-fit: cover;
+`;
+
+const Button = styled.button`
+    background: blue;
+    display: block;
+    border: none;
+    cursor: pointer;
+    margin: 100px 0 0 300px;
+    color: white;
+    border-radius: grey;
+    padding: 10px 17px;
+    box-shadow: 0px 0px 15px 0px white;
+    &:hover {
+        background: lightblue;
+    }
+`;
+
+const Company = styled.h3`
+    font-size: 25px;
+    color: grey;
+    margin-bottom: 30px;
+    cursor: pointer;
+`;
+
+export default Home;
