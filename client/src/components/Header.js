@@ -1,19 +1,20 @@
 import React, {useContext} from "react";
 import styled from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
-import { FaShoppingCart, FaBars } from "react-icons/fa";
+import { FaShoppingCart, FaBars, FaStar } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
+import { AppContext } from "./AppContext";
 
 
-const Header = () => {
-// const { selectedItems } = useContext(AllContext);
+const Header = ({ handleClickOnCartIcon }) => {
+const { selectedItems } = useContext(AppContext);
 // const { selectedItems } = useContext('');
 
 const location = useLocation();
 return (
     <Wrapper
     style={{
-        background: "#232F3E",
+        background: "#0046BE",
         paddingBottom: "16px",
     }}
 >
@@ -46,7 +47,7 @@ return (
                 {/* //dropdowns below?// */}
 
 
-                <StyledNavLink exact to="/">
+                <StyledNavLink exact to="/brands">
                     Brands
                     </StyledNavLink>
 
@@ -55,7 +56,7 @@ return (
                     </StyledNavLink>
 
                 <StyledNavLink exact to="/products">
-                    <li>Shop Everything!</li>
+                    <li>Shop All</li>
                 </StyledNavLink>
 
                 <StyledNavLink exact to="/view-order">
@@ -64,11 +65,9 @@ return (
 
                 <li>
 
-                    {/* <StyledCartIcon onClick={handleClickOnCartIcon} /> */}
-                    <StyledNavLink exact to="/cart"> 
-                    <StyledCartIcon />
-                    </StyledNavLink>
-                    {/* <ItemInCart selectedItems={selectedItems} /> */}
+                <StyledCartIcon onClick={handleClickOnCartIcon}/>
+                 <ItemInCart selectedItems={selectedItems}/>
+          
                 </li>
             </NavMenu>
         ) : (
@@ -100,22 +99,19 @@ color: #fff;
 const LogoRow = styled.div`
 display: flex;
 justify-content: center;
-/* background-color: #4E545C;
-color: #fff; */
 `
 
 const Title = styled.h1`
 color: #ffffff;
 font-weight: bold;
 font-size: 2.5em;
-/* letter-spacing: -3px; */
 `
+
 const NavMenu = styled.ul`
 display: flex;
 justify-content: space-around;
 color: #ffffff;
 text-transform: uppercase;
-/* background-color: #4E545C; */
 @media screen and (max-width: 820px) {
     display: none !important;
 } 
@@ -146,5 +142,10 @@ font-size: 18px;
 }
 `;
 
-
+const ItemInCart = styled(FaStar)`
+  visibility: ${({ selectedItems }) =>
+    selectedItems[0] ? "visible" : "hidden"};
+  transform: translate(-4px, -17px);
+  fill: ${theme.accentColor};
+`
 export default Header;

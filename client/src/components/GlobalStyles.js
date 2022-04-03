@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
 export const theme = {
-  accentColor: "#0010f2",
 
-  //accentColor: "#ff9900",//
+  //for the menu links and stuff
+  accentColor: "#FFEF00",
 
 
   hoverAccentColor: "#C64500",
@@ -55,8 +55,8 @@ a {
 }
 .accentBtn {
   border-radius: 5px;
-  background-color: ${theme.accentColor};
-  color: white;
+  background-color: #FFCE00;
+  color: black;
   border: none;
   padding: 8px 15px;
   font-family: ${theme.contentFont};
@@ -66,7 +66,7 @@ a {
   cursor: pointer;
   
   &:hover {
-    background-color: ${theme.hoverAccentColor};
+    background-color: #FFF200;
   }
   @media screen and (min-width: 900px) {
     &:active {

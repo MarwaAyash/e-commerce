@@ -20,6 +20,7 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
   const [message, setMessage] = useState("");
 
   let { _id } = useParams();
+console.log(_id)
 
   useEffect(() => {
     fetch(`/api/get-item/${_id}`)
@@ -81,6 +82,8 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
         <ProductDeets>
           <ItemTitle>{currentItem.name}</ItemTitle>
           <Price>CAD {currentItem.price}</Price>
+
+          <p>This is where we put a super compelling description. We the best. Our products are too.</p>
     
           <AddToCartRow>
             <QuantityContainer>
@@ -103,6 +106,7 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
           {message && <p>{message}</p>}
 
         </ProductDeets>
+        
       </Wrapper>
     </Container>
   );

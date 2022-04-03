@@ -38,7 +38,7 @@ const Brands = () => {
 export default Brands;
 
 const Div = Styled.div`
-padding: 3rem;
+padding: 48px;
 display: flex;
 justify-content: center;
 flex-direction: column;
