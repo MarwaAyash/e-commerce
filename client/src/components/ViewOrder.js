@@ -1,12 +1,4 @@
-// import React from 'react'
 
-// const ViewOrder = () => {
-//   return (
-//     <div>ViewOrder</div>
-//   )
-// }
-
-// export default ViewOrder
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";

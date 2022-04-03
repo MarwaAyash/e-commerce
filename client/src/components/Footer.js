@@ -11,7 +11,10 @@ const Footer = () => {
 
   return (
 
-  <Wrapper>
+  <Wrapper  style={{
+    background: "#0046BE",
+    paddingBottom: "16px",
+}}>
       <div>
         <CompanyInfoContainer>
           <Logo onClick={handleClickScroll} to="/">

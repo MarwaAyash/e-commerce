@@ -28,13 +28,13 @@ const Confirmation = () => {
                 </InfoContainer>
                 <InfoContainer>
                     <Label>Customer Name: </Label>
-                    <Info>{order.customer_name}</Info>
+                    <Info>{order.name}</Info>
                 </InfoContainer>
                 <InfoContainer>
                     <Label>Shipping Address: </Label>
-                    <Info>{order.shipping_address}</Info>
+                    <Info>{order.address}</Info>
                 </InfoContainer>
-                <InfoContainer>
+                {/* <InfoContainer>
                     <Label>Number of Items:</Label>
                     <Info>{order.total_quantity}</Info>
                 </InfoContainer>
@@ -42,7 +42,7 @@ const Confirmation = () => {
                 <InfoContainer>
                     <Label>Total Price:</Label>
                     <Info>${order.total_price}</Info>
-                </InfoContainer>
+                </InfoContainer> */}
                 </OrderConfirmed>
             </MainContainer>
             )}

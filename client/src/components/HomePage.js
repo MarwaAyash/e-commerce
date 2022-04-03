@@ -3,10 +3,11 @@ import styled, { keyframes } from "styled-components";
 import { useHistory } from "react-router-dom";
 
 
-const Home = () => {
+const HomePage = () => {
     const history = useHistory();
 
     const [randomItems, setRandomItems] = useState(""); 
+    
     const handleFetch = async () => {
         try {
             //let response = await fetch("/product/random/10");
@@ -23,11 +24,11 @@ const Home = () => {
     }, []);
 
     return (
-        
+    
         randomItems && (
             
         <AutoSlider>
-           
+    
             <SliderContent>
             {randomItems.map((item) => {
                 return (
@@ -60,6 +61,7 @@ const Home = () => {
             </SliderContent>
         </AutoSlider>
         )
+        
     );
 };
 
@@ -170,7 +172,7 @@ const Button = styled.button`
     cursor: pointer;
     margin: 100px 0 0 300px;
     color: white;
-    border-radius: grey;
+    border-radius: 5px;
     padding: 10px 17px;
     box-shadow: 0px 0px 15px 0px white;
     &:hover {
@@ -185,4 +187,4 @@ const Company = styled.h3`
     cursor: pointer;
 `;
 
-export default Home;
+export default HomePage;

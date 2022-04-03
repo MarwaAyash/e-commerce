@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { NavLink } from "react-router-dom";
 const StoreItem = ({ item, company }) => {
     const {
-        id,
+        _id,
         name,
         price,
         bodyLocation,
@@ -15,7 +16,7 @@ const StoreItem = ({ item, company }) => {
     } = item;
 
     const { _id: companyIdNum, name: companyName, url, country } = company;
-
+    
 
     return (
         <Wrapper>
@@ -23,7 +24,7 @@ const StoreItem = ({ item, company }) => {
             <ImageWrapper>
             <Image alt="item" src={imageSrc} />
             </ImageWrapper>
-            <StyledNavLink exact to="/products/:id">{name}</StyledNavLink>
+            <StyledNavLink exact to={`/products/${_id}`}>{name}</StyledNavLink>
             <Title>{companyName}</Title>
             <Price>{price}</Price>
             <p style={{ color: "black", margin: 0 }}>Category: {category}</p>
@@ -43,13 +44,10 @@ const StoreItem = ({ item, company }) => {
             <>
                 <Stock>{numInStock} left in stock</Stock>
                 <BtnWrapper>
-                <Add
-                    // onClick={addToCart}
+                <ButtonLink to={`/products/${_id}`}>
+                    More info
+                </ButtonLink>
                 
-                    
-                >
-                    Buy Now !
-                </Add>
                 </BtnWrapper>
             </>
             )}
@@ -69,7 +67,7 @@ const Wrapper = styled.article`
     text-align: center;
     /* height: fit-content; */
     display: flex;
-  flex-direction: column;
+    flex-direction: column;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -82,6 +80,27 @@ const ItemContent = styled.div`
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+`;
+
+const ButtonLink = styled(Link)`
+position: relative;
+    display: block;
+    width: 100%;
+    border-radius: 12px;
+    background: blue;
+    color: white;
+    border: none;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+    :hover {
+        color: red;
+    }
 `;
 
 const ImageWrapper = styled.div`
