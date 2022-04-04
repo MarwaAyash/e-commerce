@@ -42,9 +42,13 @@ const getCompany = (req, res) => {
   sendResponse(res, 200, company, `returning company ${_id}`);
 };
 
+
 const addOrder = (req, res) => {
   //cart is an array containing objects with structure {itemId, numBought}
+
+
   const { name, email, creditcard, address, postalCode, cart } = req.body;
+  console.log(req.body)
   //we need make sure we have all the information needed
   //  if there is missing information, return and send a response with status 400
   if (!name || !email || !creditcard || !address || !postalCode || !cart) {

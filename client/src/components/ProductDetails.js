@@ -20,7 +20,6 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
   const [message, setMessage] = useState("");
 
   let { _id } = useParams();
-console.log(_id)
 
   useEffect(() => {
     fetch(`/api/get-item/${_id}`)
