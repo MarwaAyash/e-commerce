@@ -319,7 +319,6 @@ console.log("FORMVALUE", formValue)
   );
 };
 
-
 const TitleYes = styled.div`
 display: flex;
 font-size: 35px;
