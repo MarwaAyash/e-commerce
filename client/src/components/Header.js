@@ -1,5 +1,7 @@
-import React, { useContext } from "react";
-import styled from "styled-components";
+
+import React, {useContext} from "react";
+import styled, { keyframes } from "styled-components";
+
 import { NavLink, useLocation } from "react-router-dom";
 import { FaShoppingCart, FaBars, FaStar } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
@@ -68,8 +70,10 @@ const Header = ({ handleClickOnCartIcon }) => {
                 <li>
 
                 <StyledCartIcon onClick={handleClickOnCartIcon}/>
+
+                <ItemInCartAnimation>
                  <ItemInCart selectedItems={selectedItems}/>
-          
+                 </ItemInCartAnimation>
                 </li>
             </NavMenu>
         ) : (
@@ -147,10 +151,47 @@ const StyledCartIcon = styled(FaShoppingCart)`
   }
 `;
 
+
+const SpinningStar = keyframes`
+from {transform: rotate(0deg);}
+to {transform: rotate(359deg);}
+`
 const ItemInCart = styled(FaStar)`
-  visibility: ${({ selectedItems }) =>
-    selectedItems[0] ? "visible" : "hidden"};
-  transform: translate(-4px, -17px);
-  fill: ${theme.accentColor};
-`;
+font-size: 20px;
+visibility: ${({ selectedItems }) =>
+selectedItems[0] ? "visible" : "hidden"};
+fill: ${theme.accentColor};
+animation-name: ${SpinningStar};
+animation-duration: 4s;
+animation-iteration-count: infinite;
+`
+const ItemInCartAnimation = styled.div`
+display: flex;
+transform: translate(0px, -51px);
+
+`
+
+/* animation: rotation 2s infinite linear;
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  } */
+  
+
+
+// const ItemInCartAnimation = styled.div`
+/* animation: rotation 2s infinite linear;
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  } */
+// `
 export default Header;
