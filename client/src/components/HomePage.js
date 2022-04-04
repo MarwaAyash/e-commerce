@@ -166,7 +166,7 @@ const Image = styled.img`
 `;
 
 const Button = styled.button`
-    background: blue;
+    background: #0046BE;
     display: block;
     border: none;
     cursor: pointer;
@@ -176,7 +176,7 @@ const Button = styled.button`
     padding: 10px 17px;
     box-shadow: 0px 0px 15px 0px white;
     &:hover {
-        background: lightblue;
+        background: #001E73;
     }
 `;
 

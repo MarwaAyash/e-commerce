@@ -16,7 +16,7 @@ return (
     <Wrapper
     style={{
         background: "#0046BE",
-        paddingBottom: "16px",
+        paddingBottom: "4px",
     }}
 >
     <LogoRow>
@@ -29,7 +29,10 @@ return (
         {location.pathname === "/" ||
         location.pathname === "/confirmation" ||
         location.pathname === "/view-order" ||
-        location.pathname === "/brands" ||
+        // location.pathname === "/brands" ||
+        location.pathname === "/checkout" ||
+        location.pathname === "/aboutus" ||
+
         location.pathname.includes("/products") ? (
             <MobileIcon>
 
@@ -42,12 +45,15 @@ return (
         {location.pathname === "/" ||
         location.pathname === "/confirmation" ||
         location.pathname === "/view-order" ||
-        location.pathname === "/brands" ||
+        // location.pathname === "/brands" ||
+        location.pathname === "/checkout" ||
+        location.pathname === "/aboutus" ||
+
         location.pathname.includes("/products") ? (
             <NavMenu>
 
-                <StyledNavLink exact to="/brands">
-                    Brands
+                <StyledNavLink exact to="/aboutus">
+                    About Us
                     </StyledNavLink>
 
                 <StyledNavLink exact to="/">
