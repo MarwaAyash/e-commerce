@@ -17,32 +17,33 @@ import Footer from "./Footer";
 import AllStore from "./AllStore";
 import ProductDetails from "./ProductDetails";
 
-
 import Cart from "./Cart";
 import { AppContext } from "./AppContext";
+import Signin from "./Signin";
+import Signup from "./Signup";
+import Account from "./Account";
 
 const App = () => {
   const [isCartVisible, setIsCartVisible] = useState(false);
   // // const [bacon, setBacon] = useState(null);
 
-  const {userOrder, setUserOrder} = useContext(AppContext);
+  const { userOrder, setUserOrder } = useContext(AppContext);
   const handleClickOnCartIcon = () => {
     setIsCartVisible(!isCartVisible);
   };
 
-  
   const [orderId, setOrderId] = useState(null);
-  const { formValue, setFormValue} = useContext(AppContext);
+  const { formValue, setFormValue } = useContext(AppContext);
   const updateUserOrder = (newData) => {
     setUserOrder({ ...userOrder, ...newData });
   };
-  
+
   useEffect(() => {
-    
-    const customerId = JSON.parse(window.localStorage.getItem(formValue.orderNum));
-  console.log("customer", customerId)
+    const customerId = JSON.parse(
+      window.localStorage.getItem(formValue.orderNum)
+    );
+    console.log("customer", customerId);
     if (customerId) {
-      
       fetch(`/api/get-order/${customerId}`)
         .then((res) => res.json())
         .then((res) => {
@@ -50,7 +51,6 @@ const App = () => {
           setUserOrder(res.data);
         });
     }
-    
   }, [orderId]);
   return (
     <BrowserRouter>
@@ -90,6 +90,15 @@ const App = () => {
           </Route>
           <Route exact path="/view-order">
             <ViewOrder />
+          </Route>
+          <Route exact path="/signin">
+            <Signin />
+          </Route>
+          <Route exact path="/register">
+            <Signup />
+          </Route>
+          <Route exact path="/account">
+            <Account />
           </Route>
           <Route exact path="/error">
             <Error />
