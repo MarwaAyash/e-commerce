@@ -62,34 +62,11 @@ const Footer = () => {
   );
 };
 
-const Container = styled.div`
-  background-color: #0046BE;
-  color: #fff;
-  
-`;
 
 const HomeNavLink = styled(NavLink)`
 cursor: pointer;
 text-decoration: none;
 `
-
-const FooterWrap = styled.div`
-  padding: 8px 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-`;
-
-const LinksMain = styled.div`
-  display: flex;
-  justify-content: center;
-  @media screen and (max-width: 820px) {
-    padding-top: 32px;
-  }
-`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -112,31 +89,17 @@ const CompanyInfoContainer = styled.div`
 const InfoContainer = styled.div`
   list-style: none;
   li {
-    padding: 7px;
+    padding: 2px;
     color: white;
   }
   li:hover {
-    cursor: pointer;}
-`;
-
-const LinkTitles = styled.h1`
-  font-size: 14px;
-`;
-
-const FooterLink = styled(Link)`
-  text-decoration: none;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #fff;
-  transition: 0.3s ease-out;
-  &:hover {
-    color: ${theme.accentColor};
-  }
+    cursor: pointer;
+    color: ${theme.accentColor}}
 `;
 
 const Title = styled.div`
   list-style: none;
-  padding: 10px;
+  /* padding: 6px; */
   font-size: 20px;
   font-weight: 700;
   color: white;
@@ -145,7 +108,8 @@ const Title = styled.div`
   }
 `;
 const Logo = styled.img`
-height: 130px;
+height: 90px;
+padding-top: 10px;
 `
 
 

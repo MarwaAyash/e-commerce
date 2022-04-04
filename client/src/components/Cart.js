@@ -63,6 +63,18 @@ const handleAdd = (item) => {
     }
   };
 
+  //remove from the cart//
+  const handleClickRemove = (item) => {
+    localStorage.removeItem(item.product._id);
+
+    let updatedArray = [...selectedItems];
+    updatedArray.splice(
+      updatedArray.findIndex((i) => i.product._id === item.product._id),
+      1
+    );
+    setSelectedItems(updatedArray)
+  };
+
   let count = 0;
   selectedItems.map((item) => {
     let price = item.product.price;
@@ -94,6 +106,7 @@ const handleAdd = (item) => {
                   <Quantity>{item.quantityOfProduct}</Quantity>
                   <AddButton onClick={() => handleAdd(item)}>+</AddButton>
                 </QuantityContainer>
+                <DeleteThings onClick={() => handleClickRemove(item)}/>
               </AnotherWrapper>
             </ItemWrap>
           );
@@ -260,6 +273,19 @@ const Icon = styled.div`
   cursor: pointer;
   outline: none;
 `;
+
+const DeleteThings = styled(FaTimes)`
+position: absolute;
+top: 0;
+right: 35px;
+color: black;
+font-size: 24px;
+&:hover {
+  cursor: pointer;
+  color: red;
+  transition: 0.3s ease-in;
+}`
+
 
 const CloseModal = styled(FaTimes)`
   color: black;

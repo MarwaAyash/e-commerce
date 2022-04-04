@@ -15,10 +15,9 @@ const Header = ({ handleClickOnCartIcon }) => {
     <Wrapper
       style={{
         background: "#0046BE",
-        paddingBottom: "16px",
-      }}
-    >
-      <LogoRow>
+        paddingBottom: "4px",
+      }}>
+    <LogoRow>
         <HomeNavLink exact to="/">
           {/* <Title>
                 <span>COOLSTUFF</span>
@@ -28,7 +27,10 @@ const Header = ({ handleClickOnCartIcon }) => {
         {location.pathname === "/" ||
         location.pathname === "/confirmation" ||
         location.pathname === "/view-order" ||
-        location.pathname === "/brands" ||
+        // location.pathname === "/brands" ||
+        location.pathname === "/checkout" ||
+        location.pathname === "/aboutus" ||
+
         location.pathname.includes("/products") ? (
           <MobileIcon>
             <FaBars />
@@ -36,45 +38,46 @@ const Header = ({ handleClickOnCartIcon }) => {
         ) : (
           <></>
         )}
-      </LogoRow>
-      {location.pathname === "/" ||
-      location.pathname === "/confirmation" ||
-      location.pathname === "/view-order" ||
-      location.pathname === "/brands" ||
-      location.pathname.includes("/products") ? (
-        <NavMenu>
-          <StyledNavLink exact to="/brands">
-            Brands
-          </StyledNavLink>
+        </LogoRow>
+        {location.pathname === "/" ||
+        location.pathname === "/confirmation" ||
+        location.pathname === "/view-order" ||
+        // location.pathname === "/brands" ||
+        location.pathname === "/checkout" ||
+        location.pathname === "/aboutus" ||
 
-          <StyledNavLink exact to="/products">
-            <li>Shop All</li>
-          </StyledNavLink>
+        location.pathname.includes("/products") ? (
+            <NavMenu>
 
-          <StyledNavLink exact to="/view-order">
-            <li>Your Order</li>
-          </StyledNavLink>
-          {currentUser === null ? (
-            <StyledNavLink exact to="/signin">
-              <li>Sign in</li>
-            </StyledNavLink>
-          ) : (
-            <StyledNavLink exact to="/account">
-              <li>My account</li>
-            </StyledNavLink>
-          )}
+                <StyledNavLink exact to="/aboutus">
+                    About Us
+                    </StyledNavLink>
 
-          <li>
-            <StyledCartIcon onClick={handleClickOnCartIcon} />
-            <ItemInCart selectedItems={selectedItems} />
-          </li>
-        </NavMenu>
-      ) : (
-        <></>
-      )}
-    </Wrapper>
-  );
-};
+                <StyledNavLink exact to="/">
+                    Body
+                    </StyledNavLink>
+
+                <StyledNavLink exact to="/products">
+                    <li>Shop All</li>
+                </StyledNavLink>
+
+                <StyledNavLink exact to="/view-order">
+                    <li>Your Order</li>
+                </StyledNavLink>
+
+                <li>
+
+                <StyledCartIcon onClick={handleClickOnCartIcon}/>
+                 <ItemInCart selectedItems={selectedItems}/>
+          
+                </li>
+            </NavMenu>
+        ) : (
+            <></>
+            )}
+            </Wrapper>
+);
+        };
 
 const MobileIcon = styled.div`
   display: none;

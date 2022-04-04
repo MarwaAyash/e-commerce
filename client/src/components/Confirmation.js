@@ -30,7 +30,7 @@ const Confirmation = () => {
                         {" "}
                         <p>Thank you for your purchase!</p>
                         <p>We will be sending a confirmation email to {" "}
-                        <ItemsInfo>{formValue.email}</ItemsInfo>verrrry soon.</p>
+                        <ItemsInfo>{formValue.email}</ItemsInfo> verrrry soon.</p>
                         </FurtherDetails>
                         <Divider/>
                         <p>
@@ -131,7 +131,7 @@ const ShippingAddress = styled.p`
 const ItemsInfo = styled.span`
     font-weight: 700;
     color: black;
-    font-size: 14px;
+    font-size: 26px;
 `;
 
 const MoarDeets = styled.span`
