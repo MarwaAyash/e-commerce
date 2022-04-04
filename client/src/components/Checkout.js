@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { AppContext } from "./AppContext";
 import { FaLock } from "react-icons/fa";
 
-
 const Checkout = () => {
   const [errMessage, setErrMessage] = useState("");
   const [status, setStatus] = useState("idle");
@@ -19,12 +18,12 @@ const Checkout = () => {
   } = useContext(AppContext);
   const history = useHistory();
 
-
   let itemsPurchased = [];
   selectedItems.forEach((item) => {
-    itemsPurchased.push(
-      {itemId: item.product._id, numBought: item.quantityOfProduct
-      })
+    itemsPurchased.push({
+      itemId: item.product._id,
+      numBought: item.quantityOfProduct,
+    });
   });
 
   useEffect(() => {
@@ -62,7 +61,7 @@ const Checkout = () => {
     ev.preventDefault();
     setStatus("pending");
 
-console.log("FORMVALUE", formValue)
+    console.log("FORMVALUE", formValue);
 
     fetch("/api/add-order", {
       method: "post",
@@ -77,7 +76,7 @@ console.log("FORMVALUE", formValue)
       .then((data) => {
         console.log("Success:", data);
         const { status, error } = data;
-        const {_id} = data.data;
+        const { _id } = data.data;
         console.log("_id", _id);
         console.log("status", status);
 
@@ -86,7 +85,7 @@ console.log("FORMVALUE", formValue)
           setPurchased(selectedItems);
           // updateInventory();
           setSelectedItems([]);
-          setFormValue({...formValue, orderNum: _id});
+          setFormValue({ ...formValue, orderNum: _id });
           localStorage.clear();
           localStorage.setItem(formValue.orderNum, JSON.stringify(formValue));
           history.push("/confirmation");
@@ -98,7 +97,6 @@ console.log("FORMVALUE", formValue)
         console.error("Error:", error);
       });
   };
-
 
   /////////////////////////////////////////////
   let count = 0;
@@ -264,11 +262,14 @@ console.log("FORMVALUE", formValue)
           </BtnWrapper>
 
           <SecurityWrap>
-            <SecurityIcon><FaLock /></SecurityIcon>
+            <SecurityIcon>
+              <FaLock />
+            </SecurityIcon>
             <SecurityH2>Security and Privacy</SecurityH2>
-            <SecurityText>Every transaction on YesBuy.ca is secure. 
-              Any personal information you give to us will be 
-              guarded by our team of vicious pugs.</SecurityText>
+            <SecurityText>
+              Every transaction on YesBuy.ca is secure. Any personal information
+              you give to us will be guarded by our team of vicious pugs.
+            </SecurityText>
           </SecurityWrap>
         </ContactWrapper>
       </PaymentContainer>
@@ -315,9 +316,9 @@ console.log("FORMVALUE", formValue)
 };
 
 const TitleYes = styled.div`
-display: flex;
-font-size: 35px;
-`
+  display: flex;
+  font-size: 35px;
+`;
 const ItemPrice = styled.p``;
 
 const ItemName = styled.p`
@@ -326,23 +327,22 @@ const ItemName = styled.p`
   font-weight: 600;
 `;
 
-const SecurityWrap = styled.div`
-`
+const SecurityWrap = styled.div``;
 
 const SecurityH2 = styled.h2`
-display: flex;
-font-size: 18px;
-line-height: 0;
-`
+  display: flex;
+  font-size: 18px;
+  line-height: 0;
+`;
 
 const SecurityText = styled.p`
-font-size: 14px;
-`
+  font-size: 14px;
+`;
 
 const SecurityIcon = styled.div`
-color: black;
-font-size: 25px;
-`
+  color: black;
+  font-size: 25px;
+`;
 
 const Quantity = styled.p`
   width: 20px;
@@ -384,8 +384,7 @@ const CartContainer = styled.div`
   align-items: flex-start;
 `;
 
-const Btn = styled.button`
-`;
+const Btn = styled.button``;
 
 const BtnWrapper = styled.div`
   margin: 50px 0;
