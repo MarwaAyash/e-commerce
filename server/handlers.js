@@ -174,9 +174,60 @@ const updateOrder = (req, res) => {
   const { _id, name, email, address, postalCode, cart } = req.body;
 };
 
-const addCustomer = (req, res) => {};
+const addCustomer = (req, res) => {
+  const { firstName, lastName, email, address, city, province, country } =
+    req.body;
+  console.log(req.body);
+  if (
+    !firstName ||
+    !lastName ||
+    !email ||
+    !address ||
+    !city ||
+    !province ||
+    !country
+  ) {
+    console.log("missing information");
+    return sendResponse(res, 400, req.body, "missing information");
+  }
+  const _id = uuidv4();
+  const userObject = {
+    _id,
+    firstName,
+    lastName,
+    email,
+    address,
+    city,
+    province,
+    country,
+  };
+  res.locals.customers.push(userObject);
+  console.log(userObject);
+  sendResponse(res, 200, userObject, "user added");
+};
 
-const getCustomer = (req, res) => {};
+const getCustomers = (req, res) => {
+  sendResponse(res, 200, res.locals.customers);
+};
+
+const getCustomer = (req, res) => {
+  console.log(req.body);
+
+  const { email } = req.body;
+  let foundUser;
+
+  for (let i = 0; i < res.locals.customers.length; i++) {
+    if (email === res.locals.customers[i].email) {
+      foundUser = res.locals.customers[i];
+      break;
+    }
+  }
+
+  if (foundUser === undefined) {
+    return sendResponse(res, 400, { ...req.body, status: "login failed" });
+  }
+  sendResponse(res, 200, { user: foundUser });
+};
 
 module.exports = {
   getItems,
@@ -187,4 +238,7 @@ module.exports = {
   getOrders,
   getOrder,
   deleteOrder,
+  addCustomer,
+  getCustomers,
+  getCustomer,
 };

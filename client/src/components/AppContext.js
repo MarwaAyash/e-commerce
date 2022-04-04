@@ -25,6 +25,7 @@ export const AppProvider = ({ children }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [formValue, setFormValue] = useState(initialState);
   const [purchased, setPurchased] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     fetch("/api/get-items")
@@ -53,6 +54,8 @@ export const AppProvider = ({ children }) => {
         setPurchased,
         userOrder,
         setUserOrder,
+        currentUser,
+        setCurrentUser,
       }}
     >
       {children}

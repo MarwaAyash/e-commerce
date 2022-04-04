@@ -19,6 +19,9 @@ const {
   getOrders,
   getOrder,
   deleteOrder,
+  addCustomer,
+  getCustomer,
+  getCustomers,
 } = require("./handlers");
 
 const PORT = 4000;
@@ -43,6 +46,7 @@ const passOrdersTo = (req, res, func) => {
 
 const passCustomersTo = (req, res, func) => {
   res.locals.customers = customers;
+  res.locals.orders = orders;
   func();
 };
 
@@ -75,5 +79,8 @@ express()
   .get("/api/get-order/:_id", passOrdersTo, getOrder)
   //takes an object {_id} as body of request
   .delete("/api/cancel-order", passOrdersTo, deleteOrder)
+  .post("/api/add-user", passCustomersTo, addCustomer)
+  .get("/api/get-users", passCustomersTo, getCustomers)
+  .post("/api/get-user", passCustomersTo, getCustomer)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
