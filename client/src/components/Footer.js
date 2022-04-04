@@ -7,9 +7,8 @@ import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   const handleClickScroll = () => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
   };
-
   return (
     <Container>
       <FooterWrap>
@@ -35,54 +34,93 @@ const Footer = () => {
         <Media>
           <MediaWrapper>
             <Logo onClick={handleClickScroll} to="/">
-              <LogoImg src={LogoWow}/>
-
-
+              <LogoImg src={LogoWow} />
             </Logo>
-          <li>support@coolstuff.ca</li>
-          
-          <Icons>
-            <IconLink href="/" target="_blank">
+            <Icons>
+              <IconLink href="/">
                 <FaFacebook />
               </IconLink>
               <IconLink href="/">
                 <FaInstagram />
               </IconLink>
-              <IconLink href="/" target="_blank">
-                <FaTwitter />
-              </IconLink>
-              <IconLink href="/" target="_blank">
-                <FaYoutube />
-              </IconLink>
-          </Icons>
-        </CompanyInfoContainer>
-      </div>
-      <div>
-        <InfoContainer>
-          <Title>CUSTOMER SERVICE</Title>
-          <li>FAQ</li>
-          <li>Returns</li>
-          <li>Contact us</li>
-          <li>Reviews</li>
-        </InfoContainer>
-      </div>
-      <div>
-        <InfoContainer>
-          <Title>#CoolStuff</Title>
-          <li>Our Blog</li>
-          <li>Contact</li>
-          <li>Our Story</li>
-          
-        </InfoContainer>
-      </div>
-    </Wrapper> 
+            </Icons>
+          </MediaWrapper>
+        </Media>
+      </FooterWrap>
+    </Container>
   );
 };
+//   return (
+//     <Container>
+//       <FooterWrap>
+//         <LinksMain>
+//           <Wrapper>
+//             <FooterLinkItems>
+//               <LinkTitles>Get To Know Us</LinkTitles>
+//               <FooterLink to="/">Careers</FooterLink>
+//               <FooterLink to="/">Investor Relations</FooterLink>
+//               <FooterLink to="/">Contact Us</FooterLink>
+//             </FooterLinkItems>
+//           </Wrapper>
+//           <Wrapper>
+//             <FooterLinkItems>
+//               <LinkTitles>Let Us Help You</LinkTitles>
+//               <FooterLink to="/">My Profile</FooterLink>
+//               <FooterLink to="/">My Account</FooterLink>
+//               <FooterLink to="/">Customer Service</FooterLink>
+//               <FooterLink to="/">Shipping Rates and Policies</FooterLink>
+//             </FooterLinkItems>
+//           </Wrapper>
+//         </LinksMain>
+//         <Media>
+//           <MediaWrapper>
+//             <Logo onClick={handleClickScroll} to="/">
+//               <LogoImg src={LogoWow}/>
+
+//             </Logo>
+//           <li>support@coolstuff.ca</li>
+
+//           <Icons>
+//             <IconLink href="/" target="_blank">
+//                 <FaFacebook />
+//               </IconLink>
+//               <IconLink href="/">
+//                 <FaInstagram />
+//               </IconLink>
+//               <IconLink href="/" target="_blank">
+//                 <FaTwitter />
+//               </IconLink>
+//               <IconLink href="/" target="_blank">
+//                 <FaYoutube />
+//               </IconLink>
+//           </Icons>
+//         </CompanyInfoContainer>
+//       </div>
+//       <div>
+//         <InfoContainer>
+//           <Title>CUSTOMER SERVICE</Title>
+//           <li>FAQ</li>
+//           <li>Returns</li>
+//           <li>Contact us</li>
+//           <li>Reviews</li>
+//         </InfoContainer>
+//       </div>
+//       <div>
+//         <InfoContainer>
+//           <Title>#CoolStuff</Title>
+//           <li>Our Blog</li>
+//           <li>Contact</li>
+//           <li>Our Story</li>
+
+//         </InfoContainer>
+//       </div>
+//     </Wrapper>
+//   );
+// };
 
 const Container = styled.div`
-  background-color: #0046BE;
+  background-color: #0046be;
   color: #fff;
-  
 `;
 
 const FooterWrap = styled.div`
@@ -107,7 +145,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: #4E545C;
+  background-color: #4e545c;
 `;
 
 const CompanyInfoContainer = styled.div`
@@ -128,11 +166,28 @@ const InfoContainer = styled.div`
     color: white;
   }
   li:hover {
-    cursor: pointer;}
+    cursor: pointer;
+  }
 `;
 
 const LinkTitles = styled.h1`
   font-size: 14px;
+`;
+
+const FooterLinkItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 16px;
+  text-align: left;
+  width: 160px;
+  box-sizing: border-box;
+  font-family: ${theme.headingFont};
+  @media screen and (max-width: 420px) {
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+  }
 `;
 
 const FooterLink = styled(Link)`
@@ -145,7 +200,6 @@ const FooterLink = styled(Link)`
     color: ${theme.accentColor};
   }
 `;
-
 
 const Media = styled.section`
   max-width: 1100px;
@@ -163,11 +217,10 @@ const MediaWrapper = styled.div`
   }
 `;
 
-
 // const Container = styled.div`
 //   background-color: #4E545C;
 //   color: #fff;
-  
+
 // `;
 
 // const FooterWrap = styled.footer`
@@ -260,9 +313,9 @@ const Logo = styled(Link)`
 `;
 
 const LogoImg = styled.img`
-height: 85px;
-padding-bottom: -100px;
-`
+  height: 85px;
+  padding-bottom: -100px;
+`;
 
 const Icons = styled.div`
   display: flex;
@@ -270,7 +323,6 @@ const Icons = styled.div`
   margin-top: 10px;
   width: 120px;
 `;
-
 
 const IconLink = styled.a`
   color: #fff;
