@@ -29,6 +29,7 @@ const Header = ({ handleClickOnCartIcon }) => {
         location.pathname === "/confirmation" ||
         location.pathname === "/view-order" ||
         location.pathname === "/brands" ||
+        location.pathname === "/account" ||
         location.pathname.includes("/products") ? (
           <MobileIcon>
             <FaBars />
@@ -41,6 +42,7 @@ const Header = ({ handleClickOnCartIcon }) => {
       location.pathname === "/confirmation" ||
       location.pathname === "/view-order" ||
       location.pathname === "/brands" ||
+      location.pathname === "/account" ||
       location.pathname.includes("/products") ? (
         <NavMenu>
           <StyledNavLink exact to="/brands">
