@@ -58,7 +58,8 @@ const Checkout = () => {
   //   });
   // };
 
-  const addOrderHandler = () => {
+  const addOrderHandler = (ev) => {
+    ev.preventDefault();
     setStatus("pending");
 
 console.log("FORMVALUE", formValue)
@@ -76,13 +77,16 @@ console.log("FORMVALUE", formValue)
       .then((data) => {
         console.log("Success:", data);
         const { status, error } = data;
-        // console.log("status", status);
+        const {_id} = data.data;
+        console.log("_id", _id);
+        console.log("status", status);
 
-        if (status === "success") {
+        if (status === 200) {
           setStatus("confirmed");
           setPurchased(selectedItems);
           // updateInventory();
           setSelectedItems([]);
+          setFormValue({...formValue, orderNum: _id});
           localStorage.clear();
           localStorage.setItem(formValue.orderNum, JSON.stringify(formValue));
           history.push("/confirmation");

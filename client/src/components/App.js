@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
@@ -17,16 +17,41 @@ import Footer from "./Footer";
 import AllStore from "./AllStore";
 import ProductDetails from "./ProductDetails";
 
+
 import Cart from "./Cart";
+import { AppContext } from "./AppContext";
 
 const App = () => {
   const [isCartVisible, setIsCartVisible] = useState(false);
   // // const [bacon, setBacon] = useState(null);
 
+  const {userOrder, setUserOrder} = useContext(AppContext);
   const handleClickOnCartIcon = () => {
     setIsCartVisible(!isCartVisible);
   };
 
+  
+  const [orderId, setOrderId] = useState(null);
+  const { formValue, setFormValue} = useContext(AppContext);
+  const updateUserOrder = (newData) => {
+    setUserOrder({ ...userOrder, ...newData });
+  };
+  
+  useEffect(() => {
+    
+    const customerId = JSON.parse(window.localStorage.getItem(formValue.orderNum));
+  console.log("customer", customerId)
+    if (customerId) {
+      
+      fetch(`/api/get-order/${customerId}`)
+        .then((res) => res.json())
+        .then((res) => {
+          // console.log(res);
+          setUserOrder(res.data);
+        });
+    }
+    
+  }, [orderId]);
   return (
     <BrowserRouter>
       <GlobalStyles />
@@ -64,7 +89,7 @@ const App = () => {
             <Confirmation />
           </Route>
           <Route exact path="/view-order">
-            {/* <ViewOrder /> */}
+            <ViewOrder />
           </Route>
           <Route exact path="/error">
             <Error />

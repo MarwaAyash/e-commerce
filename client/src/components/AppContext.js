@@ -14,10 +14,11 @@ let initialState = {
   creditCardNum: "",
   expirationDate: "",
   phoneNumber: "",
-  orderNum: uuidv4(),
+  orderNum: "",
 };
 
 export const AppProvider = ({ children }) => {
+  const [userOrder, setUserOrder] = useState({});
   const [items, setItems] = useState([]);
   const [brands, setBrands] = useState([]);
   const [itemsInCart, setItemsInCart] = useState([]);
@@ -50,6 +51,8 @@ export const AppProvider = ({ children }) => {
         setFormValue,
         purchased,
         setPurchased,
+        userOrder,
+        setUserOrder,
       }}
     >
       {children}
