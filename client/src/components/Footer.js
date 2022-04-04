@@ -35,7 +35,6 @@ const Footer = () => {
         <Media>
           <MediaWrapper>
             <Logo onClick={handleClickScroll} to="/">
-              {/* <span>COOLSTUFF</span> */}
               <LogoImg src={LogoWow}/>
 
 
@@ -147,14 +146,20 @@ const FooterLink = styled(Link)`
   }
 `;
 
-const Title = styled.div`
-  list-style: none;
-  padding: 10px;
-  font-size: 20px;
-  font-weight: 700;
-  color: white;
-  :hover {
-    cursor: default;
+
+const Media = styled.section`
+  max-width: 1100px;
+  width: 100%;
+`;
+
+const MediaWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  /* margin: 40px auto 0 auto; */
+  @media screen and (max-width: 820px) {
+    flex-direction: column;
   }
 `;
 

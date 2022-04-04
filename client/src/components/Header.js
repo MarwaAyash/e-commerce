@@ -46,9 +46,6 @@ return (
         location.pathname.includes("/products") ? (
             <NavMenu>
 
-                {/* //dropdowns below?// */}
-
-
                 <StyledNavLink exact to="/brands">
                     Brands
                     </StyledNavLink>
