@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-// import { v4 as uuidv4 } from "uuid";
+//import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 
 export const AllContext = createContext();
@@ -16,7 +16,7 @@ let initialState = {
     creditCardNum: "",
     expDate: "",
     phone: "",
-    // orderNum: uuidv4(),
+    //orderNum: uuidv4(),
 };
 
 //flesh out more//

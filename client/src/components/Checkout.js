@@ -1,12 +1,3 @@
-// import React from "react";
-
-// const Checkout = () => {
-//   return (
-//     <div>Checkout</div>
-//   )
-// };
-
-// export default Checkout;
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
