@@ -44,10 +44,32 @@ const getCompany = (req, res) => {
 
 const addOrder = (req, res) => {
   //cart is an array containing objects with structure {itemId, numBought}
-  const { name, email, creditcard, address, postalCode, cart } = req.body;
+  const {
+    firstName,
+    lastName,
+    email,
+    creditCardNum,
+    expirationDate,
+    address,
+    city,
+    province,
+    country,
+    itemsPurchased,
+  } = req.body;
   //we need make sure we have all the information needed
   //  if there is missing information, return and send a response with status 400
-  if (!name || !email || !creditcard || !address || !postalCode || !cart) {
+  if (
+    !firstName ||
+    !lastName ||
+    !email ||
+    !creditCardNum ||
+    !expirationDate ||
+    !address ||
+    !city ||
+    !province ||
+    !country ||
+    !itemsPurchased
+  ) {
     return sendResponse(res, 400, req.body, "missing information");
   }
 
@@ -55,15 +77,15 @@ const addOrder = (req, res) => {
   //using a for loop we can check what is in the cart
   //we want to do all our checks before changing database
   const arrayOfIndexes = [];
-  for (let i = 0; i < cart.length; i++) {
+  for (let i = 0; i < itemsPurchased.length; i++) {
     //for every item in the cart, check the itemId and compare it to a matching id in the items array
-    let item = getItemById(res.locals.items, cart[i].itemId);
+    let item = getItemById(res.locals.items, itemsPurchased[i].itemId);
     if (!item) {
       return sendResponse(
         res,
         400,
         req.body,
-        `item with id ${cart[i].itemId} does not exist in database`
+        `item with id ${itemsPurchased[i].itemId} does not exist in database`
       );
     }
     if (item.numInStock === 0) {
@@ -71,27 +93,27 @@ const addOrder = (req, res) => {
         res,
         400,
         req.body,
-        `item with id ${cart[i].itemId} is out of stock`
+        `item with id ${itemsPurchased[i].itemId} is out of stock`
       );
     }
-    if (cart[i].numBought > item.numInStock) {
+    if (itemsPurchased[i].numBought > item.numInStock) {
       return sendResponse(
         res,
         400,
         req.body,
-        `requested amount of item with id ${cart[i].itemId} greater than number in stock. numInStock: ${item.numInStock}`
+        `requested amount of item with id ${itemsPurchased[i].itemId} greater than number in stock. numInStock: ${item.numInStock}`
       );
     }
 
     //we already checked if the itemId corresponds to an item
-    const index = getIndexById(res.locals.items, cart[i].itemId);
+    const index = getIndexById(res.locals.items, itemsPurchased[i].itemId);
 
     //order in array corresponds to order in cart
     arrayOfIndexes.push(index);
   }
 
   //subtract num bought of each item from stock
-  cart.forEach((item, i) => {
+  itemsPurchased.forEach((item, i) => {
     res.locals.items[arrayOfIndexes[i]].numInStock -= item.numBought;
   });
 
@@ -99,12 +121,16 @@ const addOrder = (req, res) => {
   const orderId = uuidv4();
   const order = {
     _id: orderId,
-    name,
+    firstName,
+    lastName,
     email,
-    creditcard,
+    creditCardNum,
+    expirationDate,
     address,
-    postalCode,
-    cart,
+    city,
+    province,
+    country,
+    itemsPurchased,
   };
   res.locals.orders.push(order);
   return sendResponse(res, 200, order, `order with id ${orderId} created`);

@@ -60,7 +60,6 @@ a {
   border: none;
   padding: 8px 15px;
   font-family: ${theme.contentFont};
-  text-transform: uppercase;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;

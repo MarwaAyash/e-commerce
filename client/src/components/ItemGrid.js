@@ -105,7 +105,7 @@ const PaginationContainer = styled.footer`
     .pagination a {
         text-decoration: none;
         font-weight: 600;
-        color: white;
+        color: black;
     }
     .pagination li {
         color: green;
@@ -122,7 +122,7 @@ const PaginationContainer = styled.footer`
         border-radius: 5px;
     }
     .pagination li:hover:not(.active) {
-        background-color: rgb(213, 213, 195, 0.1);
+        background-color: grey;
         border-radius: 5px;
     }
 `;

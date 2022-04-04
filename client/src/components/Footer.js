@@ -2,27 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { theme } from "./GlobalStyles";
+import { NavLink } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import LogoWow from "../assets/best buy4.svg";
 
 const Footer = () => {
-  //const handleClickScroll = () => {
-    const handleClickScroll =() => {
+  const handleClickScroll = () => {
     window.scrollTo(0,0)
   };
 
   return (
 
-  
-  <Wrapper  style={{
+  <Wrapper style={{
     background: "#0046BE",
     paddingBottom: "16px",
 }}>
       <div>
         <CompanyInfoContainer>
-          <Logo onClick={handleClickScroll} to="/">
-              <span>COOLSTUFF</span>
-            </Logo>
-          <li>support@coolstuff.ca</li>
+        <HomeNavLink exact to="/">
+            <Logo src={LogoWow}/>
+        </HomeNavLink>
+          <li>support@yesbuy.ca</li>
           
           <Icons>
             <IconLink href="/" target="_blank">
@@ -51,7 +51,7 @@ const Footer = () => {
       </div>
       <div>
         <InfoContainer>
-          <Title>#CoolStuff</Title>
+          <Title>#YesBuy</Title>
           <li>Our Blog</li>
           <li>Contact</li>
           <li>Our Story</li>
@@ -67,6 +67,11 @@ const Container = styled.div`
   color: #fff;
   
 `;
+
+const HomeNavLink = styled(NavLink)`
+cursor: pointer;
+text-decoration: none;
+`
 
 const FooterWrap = styled.div`
   padding: 8px 24px;
@@ -139,102 +144,10 @@ const Title = styled.div`
     cursor: default;
   }
 `;
+const Logo = styled.img`
+height: 130px;
+`
 
-
-// const Container = styled.div`
-//   background-color: #4E545C;
-//   color: #fff;
-  
-// `;
-
-// const FooterWrap = styled.footer`
-//     grid-area: footer;
-//     padding: 16px 20px;
-// `;
-// const FooterWrap = styled.div`
-//   padding: 48px 24px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   max-width: 1100px;
-//   margin: 0 auto;
-// `;
-
-// const LinksMain = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   @media screen and (max-width: 820px) {
-//     padding-top: 32px;
-//   }
-// `;
-
-// const Wrapper = styled.div`
-//   display: flex;
-//   @media screen and (max-width: 820px) {
-//     flex-direction: column;
-//   }
-// `;
-
-// const FooterLinkItems = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   margin: 16px;
-//   text-align: left;
-//   width: 160px;
-//   box-sizing: border-box;
-//   font-family: ${theme.headingFont};
-//   @media screen and (max-width: 420px) {
-//     margin: 0;
-//     padding: 10px;
-//     width: 100%;
-//   }
-// `;
-
-// const LinkTitles = styled.h1`
-//   font-size: 14px;
-//   margin-bottom: 16px;
-// `;
-
-// const FooterLink = styled(Link)`
-//   text-decoration: none;
-//   margin-bottom: 0.5rem;
-//   font-size: 14px;
-//   color: #fff;
-//   transition: 0.3s ease-out;
-//   &:hover {
-//     color: ${theme.accentColor};
-//   }
-// `;
-
-// const Media = styled.section`
-//   max-width: 1100px;
-//   width: 100%;
-// `;
-
-// const MediaWrapper = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   max-width: 1100px;
-//   margin: 40px auto 0 auto;
-//   @media screen and (max-width: 820px) {
-//     flex-direction: column;
-//   }
-// `;
-
-const Logo = styled(Link)`
-  color: #fff;
-  justify-self: start;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 28px;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  font-family: ${theme.headingFont};
-`;
 
 const Icons = styled.div`
   display: flex;
