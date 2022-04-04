@@ -5,8 +5,8 @@ import { theme } from "./GlobalStyles";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
-  const handleClickScroll = () => {
-    //const handleClickScroll =() => {
+  //const handleClickScroll = () => {
+    const handleClickScroll =() => {
     window.scrollTo(0,0)
   };
 
