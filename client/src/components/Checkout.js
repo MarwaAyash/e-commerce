@@ -17,7 +17,6 @@ const Checkout = () => {
     setPurchased,
   } = useContext(AppContext);
   const history = useHistory();
-
   let itemsPurchased = [];
   selectedItems.forEach((item) => {
     itemsPurchased.push({
@@ -37,8 +36,43 @@ const Checkout = () => {
     setErrMessage("");
   };
 
+
+  // const updateInventory = () => {
+  //   selectedItems.forEach((item) => {
+  //     fetch(`api/products/${item.product._id}/update`, {
+  //       method: "PATCH",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ selectedQuantityNum: item.quantityOfProduct }),
+  //     })
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         console.log("Success:", data);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error:", error);
+  //       });
+  //   });
+  // };
+  const validateEmail = () => {
+    const emailParts = formValue.email.split("@");
+    return (
+      emailParts.length === 2 &&
+      emailParts[0].length > 0 &&
+      emailParts[1].length > 0
+    );
+  };
+//   const formValueArray = Object.values(formValue); 
+//   const emptyField = formValueArray.filter((item)=>{
+//     return item==='';
+// });
+
+
   const addOrderHandler = (ev) => {
     ev.preventDefault();
+    if (validateEmail()) {
     setStatus("pending");
 
     console.log("FORMVALUE", formValue);
@@ -61,6 +95,7 @@ const Checkout = () => {
         console.log("status", status);
 
         if (status === 200) {
+          
           setStatus("confirmed");
           setPurchased(selectedItems);
           // updateInventory();
@@ -71,11 +106,14 @@ const Checkout = () => {
           history.push("/confirmation");
         } else if (error) {
           setStatus("error");
+          
         }
       })
       .catch((error) => {
         console.error("Error:", error);
       });
+    }
+    
   };
 
   /////////////////////////////////////////////
@@ -103,6 +141,7 @@ const Checkout = () => {
                 placeholder="Email"
                 required
                 onChange={(ev) => handleFormChange(ev.target.value, "email")}
+                
               />
             </OuterSpan>
           </InputDiv>
@@ -119,6 +158,7 @@ const Checkout = () => {
                   onChange={(ev) =>
                     handleFormChange(ev.target.value, "firstName")
                   }
+                  
                 />
               </OuterSpan>
             </InputDiv>
@@ -133,6 +173,7 @@ const Checkout = () => {
                   onChange={(ev) =>
                     handleFormChange(ev.target.value, "lastName")
                   }
+                  
                 />
               </OuterSpan>
             </InputDiv>
@@ -146,6 +187,7 @@ const Checkout = () => {
                 placeholder="Address"
                 required
                 onChange={(ev) => handleFormChange(ev.target.value, "address")}
+              
               />
             </OuterSpan>
           </InputDiv>
@@ -159,6 +201,7 @@ const Checkout = () => {
                   placeholder="City"
                   required
                   onChange={(ev) => handleFormChange(ev.target.value, "city")}
+                  
                 />
               </OuterSpan>
             </InputDiv>
@@ -173,6 +216,7 @@ const Checkout = () => {
                   onChange={(ev) =>
                     handleFormChange(ev.target.value, "province")
                   }
+                  
                 />
               </OuterSpan>
             </InputDiv>
@@ -187,6 +231,7 @@ const Checkout = () => {
                   onChange={(ev) =>
                     handleFormChange(ev.target.value, "country")
                   }
+                  
                 />
               </OuterSpan>
             </InputDiv>
@@ -202,6 +247,7 @@ const Checkout = () => {
                 onChange={(ev) =>
                   handleFormChange(ev.target.value, "phoneNumber")
                 }
+    
               />
             </OuterSpan>
           </InputDiv>
@@ -217,6 +263,7 @@ const Checkout = () => {
                   onChange={(ev) =>
                     handleFormChange(ev.target.value, "creditCardNum")
                   }
+                  
                 />
               </OuterSpan>
             </InputDiv>
@@ -231,6 +278,7 @@ const Checkout = () => {
                   onChange={(ev) =>
                     handleFormChange(ev.target.value, "expirationDate")
                   }
+                
                 />
               </OuterSpan>
             </InputDiv>
@@ -502,3 +550,4 @@ const SubTotal = styled.div`
 `;
 
 export default Checkout;
+

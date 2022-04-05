@@ -7,10 +7,15 @@ import { useState, useContext } from "react";
 const ViewOrder = () => {
   const [orderId, setOrderId] = useState("");
   const [error, setError] = useState(false);
+
+  const { formValue, setFormValue, userOrder, setUserOrder } = useContext(AppContext);
+  console.log("formValue.orderNum", formValue.orderNum);
+  
   const { formValue, setFormValue, userOrder, setUserOrder } =
     useContext(AppContext);
   //const { orderNum,firstName, lastName, email, address } = userOrder[0];
   //console.log("orderId", orderId);
+
 
   return (
     <>
@@ -61,7 +66,9 @@ const ViewOrder = () => {
               </CustomerInformation>
 
               <CustomerInformation>
-                <strong>Address:</strong> {userOrder.address}
+
+                  <strong>Address:</strong> {userOrder.address} {userOrder.city} {userOrder.province} {userOrder.country}
+
               </CustomerInformation>
               <CustomerInformation>
                 <strong>Email:</strong> {userOrder.email}
