@@ -28,6 +28,13 @@ export const AppProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
+    const storedUser = localStorage.getItem("currentUser");
+    if (!!storedUser) {
+      setCurrentUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  useEffect(() => {
     fetch("/api/get-items")
       .then((res) => res.json())
       .then((res) => setItems(res.data));

@@ -28,7 +28,10 @@ const Signin = ({}) => {
       .then((data) => {
         console.log(data);
         if (data.status === 200) {
-          localStorage.setItem("currentUser", JSON.stringify(data.data.email));
+          if (!!localStorage.getItem("currentUser")) {
+            localStorage.removeItem("currentUser");
+          }
+          localStorage.setItem("currentUser", JSON.stringify(data.data.user));
           setCurrentUser(data.data.user);
           history.push("/");
         }
