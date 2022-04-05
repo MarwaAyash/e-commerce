@@ -7,9 +7,6 @@ import { useState, useContext } from "react";
 const ViewOrder = () => {
   const [orderId, setOrderId] = useState("");
   const [error, setError] = useState(false);
-
-  const { formValue, setFormValue, userOrder, setUserOrder } = useContext(AppContext);
-  console.log("formValue.orderNum", formValue.orderNum);
   
   const { formValue, setFormValue, userOrder, setUserOrder } =
     useContext(AppContext);
