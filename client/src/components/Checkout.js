@@ -37,26 +37,6 @@ const Checkout = () => {
     setErrMessage("");
   };
 
-  // const updateInventory = () => {
-  //   selectedItems.forEach((item) => {
-  //     fetch(`api/products/${item.product._id}/update`, {
-  //       method: "PATCH",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ selectedQuantityNum: item.quantityOfProduct }),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log("Success:", data);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error:", error);
-  //       });
-  //   });
-  // };
-
   const addOrderHandler = (ev) => {
     ev.preventDefault();
     setStatus("pending");

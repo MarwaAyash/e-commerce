@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
 import { NavLink, useLocation } from "react-router-dom";
 import { FaShoppingCart, FaBars, FaStar } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
@@ -15,7 +16,7 @@ const Header = ({ handleClickOnCartIcon }) => {
     <Wrapper
       style={{
         background: "#0046BE",
-        paddingBottom: "16px",
+        paddingBottom: "4px",
       }}
     >
       <LogoRow>
@@ -28,8 +29,10 @@ const Header = ({ handleClickOnCartIcon }) => {
         {location.pathname === "/" ||
         location.pathname === "/confirmation" ||
         location.pathname === "/view-order" ||
-        location.pathname === "/brands" ||
         location.pathname === "/account" ||
+        // location.pathname === "/brands" ||
+        location.pathname === "/checkout" ||
+        location.pathname === "/aboutus" ||
         location.pathname.includes("/products") ? (
           <MobileIcon>
             <FaBars />
@@ -41,12 +44,18 @@ const Header = ({ handleClickOnCartIcon }) => {
       {location.pathname === "/" ||
       location.pathname === "/confirmation" ||
       location.pathname === "/view-order" ||
-      location.pathname === "/brands" ||
+      // location.pathname === "/brands" ||
       location.pathname === "/account" ||
+      location.pathname === "/checkout" ||
+      location.pathname === "/aboutus" ||
       location.pathname.includes("/products") ? (
         <NavMenu>
-          <StyledNavLink exact to="/brands">
-            Brands
+          <StyledNavLink exact to="/aboutus">
+            About Us
+          </StyledNavLink>
+
+          <StyledNavLink exact to="/">
+            Body
           </StyledNavLink>
 
           <StyledNavLink exact to="/products">
@@ -68,7 +77,10 @@ const Header = ({ handleClickOnCartIcon }) => {
 
           <li>
             <StyledCartIcon onClick={handleClickOnCartIcon} />
-            <ItemInCart selectedItems={selectedItems} />
+
+            <ItemInCartAnimation>
+              <ItemInCart selectedItems={selectedItems} />
+            </ItemInCartAnimation>
           </li>
         </NavMenu>
       ) : (
@@ -146,10 +158,43 @@ const StyledCartIcon = styled(FaShoppingCart)`
   }
 `;
 
+const SpinningStar = keyframes`
+from {transform: rotate(0deg);}
+to {transform: rotate(359deg);}
+`;
 const ItemInCart = styled(FaStar)`
+  font-size: 20px;
   visibility: ${({ selectedItems }) =>
     selectedItems[0] ? "visible" : "hidden"};
-  transform: translate(-4px, -17px);
   fill: ${theme.accentColor};
+  animation-name: ${SpinningStar};
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
 `;
+const ItemInCartAnimation = styled.div`
+  display: flex;
+  transform: translate(0px, -51px);
+`;
+
+/* animation: rotation 2s infinite linear;
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  } */
+
+// const ItemInCartAnimation = styled.div`
+/* animation: rotation 2s infinite linear;
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  } */
+// `
 export default Header;
