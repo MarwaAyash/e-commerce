@@ -54,10 +54,6 @@ const Header = ({ handleClickOnCartIcon }) => {
             About Us
           </StyledNavLink>
 
-          <StyledNavLink exact to="/">
-            Body
-          </StyledNavLink>
-
           <StyledNavLink exact to="/products">
             <li>Shop All</li>
           </StyledNavLink>
