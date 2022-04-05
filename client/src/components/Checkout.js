@@ -17,7 +17,6 @@ const Checkout = () => {
     setPurchased,
   } = useContext(AppContext);
   const history = useHistory();
-  const [missingData, setMissingData] = useState('');
   let itemsPurchased = [];
   selectedItems.forEach((item) => {
     itemsPurchased.push({
@@ -36,6 +35,7 @@ const Checkout = () => {
     setFormValue({ ...formValue, [name]: value, itemsPurchased });
     setErrMessage("");
   };
+
 
   // const updateInventory = () => {
   //   selectedItems.forEach((item) => {
@@ -68,6 +68,7 @@ const Checkout = () => {
 //   const emptyField = formValueArray.filter((item)=>{
 //     return item==='';
 // });
+
 
   const addOrderHandler = (ev) => {
     ev.preventDefault();

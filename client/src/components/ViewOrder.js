@@ -7,68 +7,77 @@ import { useState, useContext } from "react";
 const ViewOrder = () => {
   const [orderId, setOrderId] = useState("");
   const [error, setError] = useState(false);
+
   const { formValue, setFormValue, userOrder, setUserOrder } = useContext(AppContext);
   console.log("formValue.orderNum", formValue.orderNum);
   
+  const { formValue, setFormValue, userOrder, setUserOrder } =
+    useContext(AppContext);
+  //const { orderNum,firstName, lastName, email, address } = userOrder[0];
+  //console.log("orderId", orderId);
+
+
   return (
-      <>
+    <>
       <Wrapper>
-          <form
+        <form
           onSubmit={(ev) => {
-              ev.preventDefault();
-              fetch(`/api/get-order/${orderId}`)
+            ev.preventDefault();
+            fetch(`/api/get-order/${orderId}`)
               .then((res) => res.json())
-              .then((data) => {console.log("data", data);
-                  console.log("user order", userOrder);
-                  if (data.status === 200) {
+              .then((data) => {
+                console.log("data", data);
+                console.log("user order", userOrder);
+                if (data.status === 200) {
                   setError(false);
                   setUserOrder(data.data);
-                  
-                  } else {
+                } else {
                   setError(true);
-                  }
+                }
               });
           }}
-          >
+        >
           <input
-              type="text"
-              name="orderId"
-              value={orderId}
-              onChange={(ev) => {
+            type="text"
+            name="orderId"
+            value={orderId}
+            onChange={(ev) => {
               setOrderId(ev.target.value);
-              }}
+            }}
           />
-          
+
           <Button type="submit">Submit</Button>
-          </form>
+        </form>
       </Wrapper>
       <Wrapper>
-          <Container>
+        <Container>
           <Notice>Your Order:</Notice>
-          
+
           {error ? (
-              "The order ID that you requested is invalid."
+            "The order ID that you requested is invalid."
           ) : (
-              
-              <>
+            <>
               <CustomerInformation>
-                  <strong>Order #:</strong> {userOrder._id}
+                <strong>Order #:</strong> {userOrder._id}
               </CustomerInformation>
               <CustomerInformation>
-                  <strong> Name:</strong> {userOrder.firstName} {userOrder.lastName}
+                <strong> Name:</strong> {userOrder.firstName}{" "}
+                {userOrder.lastName}
               </CustomerInformation>
-              
+
               <CustomerInformation>
+
                   <strong>Address:</strong> {userOrder.address} {userOrder.city} {userOrder.province} {userOrder.country}
+
               </CustomerInformation>
               <CustomerInformation>
-                  <strong>Email:</strong> {userOrder.email}
+                <strong>Email:</strong> {userOrder.email}
               </CustomerInformation>
-              </>
+            </>
           )}
-          </Container>
+        </Container>
       </Wrapper>
-      </>
+    </>
   );
 };
 

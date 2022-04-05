@@ -9,120 +9,120 @@ const AllStore = () => {
     "Fitness",
     "Medical",
     "Lifestyle",
-];
-const [filter, setFilter] = useState([...defaultFilterState]);
-const [entChecked, setEntChecked] = useState(false);
-const [fitChecked, setFitChecked] = useState(false);
-const [medChecked, setMedChecked] = useState(false);
-const [lifeChecked, setLifeChecked] = useState(false);
-const [filter2, setFilter2] = useState([]);
+  ];
+  const [filter, setFilter] = useState([...defaultFilterState]);
+  const [entChecked, setEntChecked] = useState(false);
+  const [fitChecked, setFitChecked] = useState(false);
+  const [medChecked, setMedChecked] = useState(false);
+  const [lifeChecked, setLifeChecked] = useState(false);
+  const [filter2, setFilter2] = useState([]);
 
-useEffect(() => {
+  useEffect(() => {
     const checkedArray = [entChecked, fitChecked, lifeChecked, medChecked];
 
     checkedArray.every((box) => box === false)
-    ? setFilter([...defaultFilterState])
-    : setFilter([...filter2]);
-}, [entChecked, fitChecked, medChecked, lifeChecked]);
+      ? setFilter([...defaultFilterState])
+      : setFilter([...filter2]);
+  }, [entChecked, fitChecked, medChecked, lifeChecked]);
 
-const handleFilter = (e, categoryTarget, setCategoryTarget) => {
+  const handleFilter = (e, categoryTarget, setCategoryTarget) => {
     const category = e.target.value;
     setCategoryTarget(!categoryTarget);
     if (categoryTarget === false) {
-    if (!filter2.includes(category)) {
+      if (!filter2.includes(category)) {
         setFilter2([...filter2, category]);
-    } else {
+      } else {
         setFilter2([...filter]);
-    }
+      }
     } else {
-    const newF = filter2.filter((i) => i !== category);
-    setFilter2([...newF]);
+      const newF = filter2.filter((i) => i !== category);
+      setFilter2([...newF]);
     }
-};
-return (
+  };
+  return (
     <Wrapper>
-    <Category>
+      <Category>
         <h2>Category:</h2>
         <label>
-        <input
+          <input
             type="checkbox"
             name="category"
             value="Entertainment"
             onChange={(e) => handleFilter(e, entChecked, setEntChecked)}
             checked={entChecked}
-        />
-        Entertainment
+          />
+          Entertainment
         </label>
         <label>
-        <input
+          <input
             type="checkbox"
             name="category"
             value="Fitness"
             onChange={(e) => handleFilter(e, fitChecked, setFitChecked)}
             checked={fitChecked}
-        />
-        Fitness
+          />
+          Fitness
         </label>
         <label>
-        <input
+          <input
             type="checkbox"
             name="category"
             value="Lifestyle"
             onChange={(e) => handleFilter(e, lifeChecked, setLifeChecked)}
             checked={lifeChecked}
-        />
-        Lifestyle
+          />
+          Lifestyle
         </label>
         <label>
-        <input
+          <input
             type="checkbox"
             name="category"
             value="Medical"
             onChange={(e) => handleFilter(e, medChecked, setMedChecked)}
             checked={medChecked}
-        />
-        Medical
+          />
+          Medical
         </label>
-    </Category>
-    <ItemGridWrapper>
+      </Category>
+      <ItemGridWrapper>
         <ItemGrid filter={filter} />
-    </ItemGridWrapper>
-
+      </ItemGridWrapper>
     </Wrapper>
-);
+  );
 };
 
 const Wrapper = styled.div`
-display: grid;
-grid-template-areas:
+  display: grid;
+  grid-template-areas:
     "header header header header header header "
     "sidebar  main main main main main"
     "footer footer footer footer footer footer";
-grid-template-columns: 300px auto;
-border-top: 1px solid black;
-//height: 100vh;
+  grid-template-columns: 300px auto;
+  border-top: 1px solid black;
+  //height: 100vh;
 `;
 
 const ItemGridWrapper = styled.main`
-grid-area: main;
-padding: 16px 20px;
+  grid-area: main;
+  padding: 16px 20px;
 `;
 
 const FooterWrapper = styled.footer`
-grid-area: footer;
-padding: 16px 20px;
+  grid-area: footer;
+  padding: 16px 20px;
 `;
 const Category = styled.div`
-grid-area: sidebar;
-display: flex;
-flex-direction: column;
-label {
-font-size: 18px;
-padding: 5px;
-}
-h2 {
-color: red;
-}
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  label {
+    font-size: 18px;
+    padding: 5px;
+  }
+  h2 {
+    color: red;
+  }
 `;
 
-export default AllStore
+export default AllStore;
