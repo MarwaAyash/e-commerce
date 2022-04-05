@@ -1,5 +1,4 @@
-
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components";
 
 import { NavLink, useLocation } from "react-router-dom";
@@ -18,8 +17,9 @@ const Header = ({ handleClickOnCartIcon }) => {
       style={{
         background: "#0046BE",
         paddingBottom: "4px",
-      }}>
-    <LogoRow>
+      }}
+    >
+      <LogoRow>
         <HomeNavLink exact to="/">
           {/* <Title>
                 <span>COOLSTUFF</span>
@@ -29,10 +29,10 @@ const Header = ({ handleClickOnCartIcon }) => {
         {location.pathname === "/" ||
         location.pathname === "/confirmation" ||
         location.pathname === "/view-order" ||
+        location.pathname === "/account" ||
         // location.pathname === "/brands" ||
         location.pathname === "/checkout" ||
         location.pathname === "/aboutus" ||
-
         location.pathname.includes("/products") ? (
           <MobileIcon>
             <FaBars />
@@ -40,48 +40,55 @@ const Header = ({ handleClickOnCartIcon }) => {
         ) : (
           <></>
         )}
-        </LogoRow>
-        {location.pathname === "/" ||
-        location.pathname === "/confirmation" ||
-        location.pathname === "/view-order" ||
-        // location.pathname === "/brands" ||
-        location.pathname === "/checkout" ||
-        location.pathname === "/aboutus" ||
+      </LogoRow>
+      {location.pathname === "/" ||
+      location.pathname === "/confirmation" ||
+      location.pathname === "/view-order" ||
+      // location.pathname === "/brands" ||
+      location.pathname === "/account" ||
+      location.pathname === "/checkout" ||
+      location.pathname === "/aboutus" ||
+      location.pathname.includes("/products") ? (
+        <NavMenu>
+          <StyledNavLink exact to="/aboutus">
+            About Us
+          </StyledNavLink>
 
-        location.pathname.includes("/products") ? (
-            <NavMenu>
+          <StyledNavLink exact to="/">
+            Body
+          </StyledNavLink>
 
-                <StyledNavLink exact to="/aboutus">
-                    About Us
-                    </StyledNavLink>
+          <StyledNavLink exact to="/products">
+            <li>Shop All</li>
+          </StyledNavLink>
 
-                <StyledNavLink exact to="/">
-                    Body
-                    </StyledNavLink>
+          <StyledNavLink exact to="/view-order">
+            <li>Your Order</li>
+          </StyledNavLink>
+          {currentUser === null ? (
+            <StyledNavLink exact to="/signin">
+              <li>Sign in</li>
+            </StyledNavLink>
+          ) : (
+            <StyledNavLink exact to="/account">
+              <li>My account</li>
+            </StyledNavLink>
+          )}
 
-                <StyledNavLink exact to="/products">
-                    <li>Shop All</li>
-                </StyledNavLink>
+          <li>
+            <StyledCartIcon onClick={handleClickOnCartIcon} />
 
-                <StyledNavLink exact to="/view-order">
-                    <li>Your Order</li>
-                </StyledNavLink>
-
-                <li>
-
-                <StyledCartIcon onClick={handleClickOnCartIcon}/>
-
-                <ItemInCartAnimation>
-                 <ItemInCart selectedItems={selectedItems}/>
-                 </ItemInCartAnimation>
-                </li>
-            </NavMenu>
-        ) : (
-            <></>
-            )}
-            </Wrapper>
-);
-        };
+            <ItemInCartAnimation>
+              <ItemInCart selectedItems={selectedItems} />
+            </ItemInCartAnimation>
+          </li>
+        </NavMenu>
+      ) : (
+        <></>
+      )}
+    </Wrapper>
+  );
+};
 
 const MobileIcon = styled.div`
   display: none;
@@ -151,25 +158,23 @@ const StyledCartIcon = styled(FaShoppingCart)`
   }
 `;
 
-
 const SpinningStar = keyframes`
 from {transform: rotate(0deg);}
 to {transform: rotate(359deg);}
-`
+`;
 const ItemInCart = styled(FaStar)`
-font-size: 20px;
-visibility: ${({ selectedItems }) =>
-selectedItems[0] ? "visible" : "hidden"};
-fill: ${theme.accentColor};
-animation-name: ${SpinningStar};
-animation-duration: 4s;
-animation-iteration-count: infinite;
-`
+  font-size: 20px;
+  visibility: ${({ selectedItems }) =>
+    selectedItems[0] ? "visible" : "hidden"};
+  fill: ${theme.accentColor};
+  animation-name: ${SpinningStar};
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+`;
 const ItemInCartAnimation = styled.div`
-display: flex;
-transform: translate(0px, -51px);
-
-`
+  display: flex;
+  transform: translate(0px, -51px);
+`;
 
 /* animation: rotation 2s infinite linear;
 @keyframes rotation {
@@ -180,8 +185,6 @@ transform: translate(0px, -51px);
       transform: rotate(359deg);
     }
   } */
-  
-
 
 // const ItemInCartAnimation = styled.div`
 /* animation: rotation 2s infinite linear;
