@@ -10,13 +10,16 @@ const AllStore = () => {
     "Medical",
     "Lifestyle",
   ];
+  // we put each checkbox in a state, the filter by default will be the default filter state which means all the unchecked boxes
+  
   const [filter, setFilter] = useState([...defaultFilterState]);
   const [entChecked, setEntChecked] = useState(false);
   const [fitChecked, setFitChecked] = useState(false);
   const [medChecked, setMedChecked] = useState(false);
   const [lifeChecked, setLifeChecked] = useState(false);
   const [filter2, setFilter2] = useState([]);
-
+//we have an array of the checked boxes and we loop over the array by using (every) method
+// if the box checked we put it inside the filter2
   useEffect(() => {
     const checkedArray = [entChecked, fitChecked, lifeChecked, medChecked];
 
@@ -24,6 +27,7 @@ const AllStore = () => {
       ? setFilter([...defaultFilterState])
       : setFilter([...filter2]);
   }, [entChecked, fitChecked, medChecked, lifeChecked]);
+
 
   const handleFilter = (e, categoryTarget, setCategoryTarget) => {
     const category = e.target.value;

@@ -34,7 +34,7 @@ left: 20%;
 transform: translate(-50%, -50%);
 `;
 
-`
+
 
 
 const LilText = styled.div`
@@ -49,8 +49,8 @@ const Image = styled.img`
 height: 100vh;
 width: 100vw;
 `;
-=======
-`
+
+
 
 
 
